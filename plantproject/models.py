@@ -19,6 +19,10 @@ class PlantProject(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ["-created_on"]
+
+
 
 class PlantProjectCard(models.Model):
     """
@@ -28,3 +32,6 @@ class PlantProjectCard(models.Model):
     image = CloudinaryField('image', default='placeholder')
     entry_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_on"]
