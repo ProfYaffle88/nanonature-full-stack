@@ -5,6 +5,14 @@ from .models import PlantProject
 
 
 class HomeView(ListView):
+    """
+    Class-based view of all projects, ordered by most recent.
+
+    **Context**
+    ``plantproject``
+        An instance of :model:`plantproject.PlantProject`
+    
+    """
     queryset = PlantProject.objects.all()
     template_name = 'plantproject/home.html'
     paginate_by = 8
