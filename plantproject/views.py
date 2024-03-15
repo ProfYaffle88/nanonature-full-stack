@@ -18,7 +18,7 @@ class HomeView(ListView):
     paginate_by = 8
 
 
-def about(request):
+def About(request):
     """
     Renders the about page.
 
