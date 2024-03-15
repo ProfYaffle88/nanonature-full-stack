@@ -14,7 +14,7 @@ class PlantProject(models.Model):
     image = CloudinaryField('image', default='placeholder')
     about = models.TextField()
     project_card_entries = models.ForeignKey(
-        PlantProjectCard, on_delete=models.CASCADE, related_name="plant_project_cards"
+        'PlantProjectCard', on_delete=models.CASCADE, related_name="plant_project_cards"
         )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
