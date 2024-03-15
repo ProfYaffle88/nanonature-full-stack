@@ -11,4 +11,10 @@ class HomeView(ListView):
 
 
 def about(request):
-    return render(request, 'about.html')
+    """
+    Renders the about page.
+
+    **Template:**
+    :template:`plantproject/about.html`
+    """
+    return render(request, 'plantproject/about.html')
