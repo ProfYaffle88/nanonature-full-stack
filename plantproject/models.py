@@ -21,6 +21,9 @@ class PlantProject(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
+    
+    def __str__(self):
+        return f"Project: {self.title} | a project by {self.creator}"
 
 
 
@@ -35,3 +38,6 @@ class PlantProjectCard(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
+
+    def __str__(self):
+        return f"Project Entry: {self.title}"
