@@ -12,7 +12,7 @@ class PlantProject(models.Model):
     )
     title = models.CharField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
-    about = models.TextField()
+    about = models.TextField(default="Tell everyone about your project!")
     project_card_entries = models.ForeignKey(
         'PlantProjectCard', on_delete=models.CASCADE, related_name="plant_project_cards"
         )
@@ -33,7 +33,7 @@ class PlantProjectCard(models.Model):
     """
     title = models.CharField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
-    entry_body = models.TextField()
+    entry_body = models.TextField(default="Tell everyone about the update to your project!")
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
