@@ -18,6 +18,11 @@ class HomeView(ListView):
     paginate_by = 8
 
 
+class ProjectView(DetailView):
+    model = PlantProject
+    template_name = 'project_view.html'
+
+
 def About(request):
     """
     Renders the about page.
