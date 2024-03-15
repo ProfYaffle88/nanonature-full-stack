@@ -25,7 +25,7 @@
                             <div class="image-flash">
                                 <p class="creator">Creator: {{ project.creator }}</p>
                             </div>
-                            <a href="{% url 'project_detail' project.pk %}" class="project-link">
+                            <a href="{% url 'project-view' project.pk %}" class="project-link">
                                 <h2 class="card-title">{{ project.title }}</h2>
                                 <p class="card-text">{{ project.about }}</p>
                             </a>
