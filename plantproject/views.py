@@ -8,3 +8,7 @@ class HomeView(ListView):
     queryset = PlantProject.objects.all()
     template_name = 'plantproject/home.html'
     paginate_by = 8
+
+
+def about(request):
+    return render(request, 'about.html')
