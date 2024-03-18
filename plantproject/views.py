@@ -116,4 +116,5 @@ class ProjectCardCreateView(CreateView):
 
     # if successful, navigate to newly created project
     def get_success_url(self):
-        return reverse('project-card-view', kwargs={'project_pk': self.object.pk})
+        project_pk = self.object.project.pk
+        return reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': self.object.pk})

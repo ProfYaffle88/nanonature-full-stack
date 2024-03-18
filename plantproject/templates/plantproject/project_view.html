@@ -13,7 +13,7 @@
                     <p class="creator">Creator: {{ project.creator }}</p>
                     <!-- If no image included, use default -->
                     {% if "placeholder" in project.image.url %}
-                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" 
+                    <img class="card-img-top" src="{% static 'images/default.webp' %}" 
                         alt="placeholder image">
                     {% else %}
                     <img class="card-img-top" src=" {{ project.image.url }}" alt="{{ project.title }}">
@@ -35,7 +35,7 @@
                     </a>
                     <!-- If no image included, use default -->
                     {% if "placeholder" in card.image.url %}
-                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                    <img class="card-img-top" src="{% static 'images/default.webp' %}" alt="placeholder image">
                     {% else %}
                     <img class="card-img-top" src=" {{ card.image.url }}" alt="{{ card.title }}">
                     {% endif %}
