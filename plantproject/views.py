@@ -54,6 +54,13 @@ class ProjectCardView(DetailView):
     model = PlantProjectCard
     template_name = 'plantproject/project_card_view.html'
 
+    def get_object(self, queryset=None):
+        project_pk = self.kwargs.get('project_pk')
+        card_pk = self.kwargs.get('card_pk')
+        # Fetch the PlantProjectCard object using project_pk and card_pk
+        obj = get_object_or_404(PlantProjectCard, project__pk=project_pk, pk=card_pk)
+        return obj
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         project_card = self.object
