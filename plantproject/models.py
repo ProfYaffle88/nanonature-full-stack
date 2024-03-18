@@ -13,9 +13,6 @@ class PlantProject(models.Model):
     title = models.CharField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
     about = models.TextField(default="Tell everyone about your project!")
-    project_card_entries = models.ForeignKey(
-        'PlantProjectCard', on_delete=models.CASCADE, related_name="plant_project_cards", blank=True, null=True
-        )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
 
@@ -31,6 +28,9 @@ class PlantProjectCard(models.Model):
     """
     Stores a single entry to a project, related to :model:`plantproject.PlantProject`
     """
+    project = models.ForeignKey(
+        PlantProject, on_delete=models.CASCADE, related_name="project_cards"
+        )
     title = models.CharField(max_length=200, unique=True)
     image = CloudinaryField('image', default='placeholder')
     entry_body = models.TextField(default="Tell everyone about the update to your project!")
