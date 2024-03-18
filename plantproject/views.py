@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import PlantProject, PlantProjectCard
-from .forms import ProjectForm
+from .forms import ProjectForm, ProjectCardForm
 
 
 class HomeView(ListView):
@@ -101,8 +101,14 @@ class ProjectCardCreateView(CreateView):
     fields = ['title', 'image', 'entry_body',]
     template_name = 'plantproject/project_card_create.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project_pk = self.kwargs.get('project_pk')
+        project = get_object_or_404(PlantProject, pk=project_pk)
+        context['project'] = project
+        return context
+    
     def form_valid(self, form):
-        form.instance.creator = self.request.user
         project_pk = self.kwargs.get('project_pk')
         project = get_object_or_404(PlantProject, pk=project_pk)
         form.instance.project = project
