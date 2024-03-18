@@ -23,7 +23,7 @@
                     <p class="card-text text-muted">Created on: {{ project.created_on }}</p>
                     <p class="card-text text-muted">Updated on: {{ project.updated_on }}</p>
                     {% if user.is_authenticated and user == project.creator %}
-                    <a href="{% url 'project-card-create' project_pk=project.pk %}" class="btn btn-primary">Add Project Card</a>
+                    <a href="{% url 'project-card-create' project_pk=project.pk %}" class="btn btn-primary">Make a new entry in this Project</a>
                     {% endif %}
                 </div>
             </div>
