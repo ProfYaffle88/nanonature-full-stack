@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render
-from .models import PlantProject
+from .models import PlantProject, PlantProjectCard
 
 
 class HomeView(ListView):
@@ -19,6 +19,16 @@ class HomeView(ListView):
 
 
 class ProjectView(DetailView):
+    """
+    Displays details of a single project and all cards within.
+
+    **Context**
+     ``plantproject``
+        An instance of :model:`plantproject.PlantProject`
+    ``project_card``
+        An instance of :model:`plantproject.PlantProjectCard`.
+    
+    """
     model = PlantProject
     template_name = 'plantproject/project_view.html'
 
@@ -28,6 +38,28 @@ class ProjectView(DetailView):
         project = self.object
         context['project'] = project
         context['project_cards'] = project.project_cards.all()
+        return context
+
+
+class ProjectCardView(DetailView):
+    """
+    Displays details of a single project card within a project.
+
+    **Context**
+    ``project_card``
+        An instance of :model:`plantproject.PlantProjectCard`.
+    
+    """
+    model = PlantProjectCard
+    template_name = 'plantproject/project_card_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project_card = self.object
+        project = project_card.project
+        context['project'] = project
+        context['prev_card'] = project.project_cards.filter(created_on__lt=project_card.created_on).order_by('-created_on').first()
+        context['next_card'] = project.project_cards.filter(created_on__gt=project_card.created_on).order_by('created_on').first()
         return context
 
 
