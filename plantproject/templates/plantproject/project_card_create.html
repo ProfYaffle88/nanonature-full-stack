@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1>Create an entry for {{ project.title }}</h1>
+<h1>Create a New Entry for the "{{ project.title }}" Project</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
