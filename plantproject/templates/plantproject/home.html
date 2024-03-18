@@ -27,8 +27,8 @@
                             </div>
                             <a href="{% url 'project-view' project.pk %}" class="project-link">
                                 <h2 class="card-title">{{ project.title }}</h2>
-                                <p class="card-text">{{ project.about }}</p>
                             </a>
+                            <p class="card-text">{{ project.about }}</p>
                             <hr>
                             <p class="card-text text-muted h6">{{ project.created_on}}</p>
                             <p class="card-text text-muted h6">{{ project.updated_on}}</p>
