@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, get_object_or_404, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import PlantProject, PlantProjectCard
 from .forms import ProjectForm
 
@@ -85,6 +86,10 @@ class ProjectCreateView(CreateView):
     model = PlantProject
     fields = ['title', 'image', 'about']
     template_name = 'plantproject/project_create.html'
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
 
     # if successful, navigate to newly created project
     def get_success_url(self):
