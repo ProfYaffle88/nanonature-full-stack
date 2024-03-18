@@ -103,6 +103,9 @@ class ProjectCardCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
+        project_pk = self.kwargs.get('project_pk')
+        project = get_object_or_404(PlantProject, pk=project_pk)
+        form.instance.project = project
         return super().form_valid(form)
 
     # if successful, navigate to newly created project
