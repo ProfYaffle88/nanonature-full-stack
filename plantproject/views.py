@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView, DetailView
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView
+from django.shortcuts import render, get_object_or_404, reverse
 from .models import PlantProject, PlantProjectCard
 from .forms import ProjectForm
 
@@ -72,3 +72,13 @@ def About(request):
     :template:`plantproject/about.html`
     """
     return render(request, 'plantproject/about.html')
+
+
+class ProjectCreateView(CreateView):
+    model = PlantProject
+    fields = ['title', 'image', 'about']
+    template_name = 'plantproject/project_create.html'
+
+    # if successful, navigate to newly created project
+    def get_success_url(self):
+        return reverse('project-view', kwargs={'pk': self.object.pk})
