@@ -42,7 +42,9 @@
                             href="{% url 'about' %}">About</a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'project-create' %}">Create Project</a></li>
+                    <li class="nav-item">
+                        <a href="{% url 'project-create' %}">Create New Project</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
                             href="{% url 'account_logout' %}">Logout</a>
