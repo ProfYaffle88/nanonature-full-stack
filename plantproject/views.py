@@ -94,3 +94,17 @@ class ProjectCreateView(CreateView):
     # if successful, navigate to newly created project
     def get_success_url(self):
         return reverse('project-view', kwargs={'pk': self.object.pk})
+
+
+class ProjectCardCreateView(CreateView):
+    model = PlantProjectCard
+    fields = ['title', 'image', 'entry_body',]
+    template_name = 'plantproject/project_card_create.html'
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
+
+    # if successful, navigate to newly created project
+    def get_success_url(self):
+        return reverse('project-card-view', kwargs={'project_pk': self.object.pk})
