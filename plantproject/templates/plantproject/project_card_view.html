@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ object.title }}</h2>
+                    <img class="card-img-top" src="{{ object.image.url }}" alt="{{ object.title }}">
+                    <p class="card-text">{{ object.entry_body }}</p>
+                    <p class="card-text text-muted">Created on: {{ object.created_on }}</p>
+                    <p class="card-text text-muted">Updated on: {{ object.updated_on }}</p>
+                    <p class="card-text text-muted">Creator: {{ project.creator }}</p>
+                </div>
+            </div>
+            <div class="text-center">
+                {% if prev_card %}
+                <a href="{% url 'project-card-view' project.pk prev_card.pk %}" class="btn btn-primary mr-2">Previous</a>
+                {% endif %}
+                {% if next_card %}
+                <a href="{% url 'project-card-view' project.pk next_card.pk %}" class="btn btn-primary">Next</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
