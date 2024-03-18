@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 from .models import PlantProject, PlantProjectCard
+from .forms import ProjectForm
 
 
 class HomeView(ListView):
