@@ -1,34 +1,46 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Create Account" %}{% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
-{% endblock content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <h3>{% trans "Create Account" %}</h3>
+
+            <p>{% blocktrans %}Welcome to NanoNature. To create projects, or leave a comments and likes, please create an account!
+                If you have already created an account, then go <a class="link" href="{{ login_url }}">here</a> to login.{% endblocktrans %}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <form class="login" method="POST" action="{% url 'account_signup' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <!-- Additional fields for UserProfile model -->
+                <div class="form-group">
+                    <label for="id_bio">{% trans "Bio" %}</label>
+                    <textarea class="form-control" id="id_bio" name="bio" rows="3">{{ form.bio }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="id_image">{% trans "Image" %}</label>
+                    <input type="file" class="form-control-file" id="id_image" name="image">
+                    <p class="image-preview">{{ form.image }}</p>
+                </div>
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn btn-signup right" type="submit">{% trans "Create Account" %}</button>
+                {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

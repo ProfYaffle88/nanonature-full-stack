@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3 left">
+
+            <!-- Project Detail Card -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="creator">Creator: {{ project.creator }}</p>
+                    <!-- If no image included, use default -->
+                    {% if "placeholder" in project.image.url %}
+                    <img class="card-img-top" src="{% static 'images/default.webp' %}" 
+                        alt="placeholder image">
+                    {% else %}
+                    <img class="card-img-top" src=" {{ project.image.url }}" alt="{{ project.title }}">
+                    {% endif %}          
+                    <p class="card-text">{{ project.about }}</p>
+                    <hr>
+                    <p class="card-text text-muted">Created on: {{ project.created_on }}</p>
+                    <p class="card-text text-muted">Updated on: {{ project.updated_on }}</p>
+                    {% if user.is_authenticated and user == project.creator %}
+                    <a href="{% url 'project-card-create' project_pk=project.pk %}" class="btn btn-primary">Make a new entry in this Project</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Display Project Entries -->
+            {% for card in project_cards %}
+            <!-- Display entry details -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <a href="{% url 'project-card-view' project_pk=project.pk card_pk=card.pk %}" class="project-card-link">
+                        <h3 class="card-title">{{ card.title }}</h3>                        
+                    </a>
+                    <!-- If no image included, use default -->
+                    {% if "placeholder" in card.image.url %}
+                    <img class="card-img-top" src="{% static 'images/default.webp' %}" alt="placeholder image">
+                    {% else %}
+                    <img class="card-img-top" src=" {{ card.image.url }}" alt="{{ card.title }}">
+                    {% endif %}
+                    <p class="card-text">{{ card.entry_body }}</p>
+                    <p class="card-text text-muted">Created on: {{ card.created_on }}</p>
+                    <p class="card-text text-muted">Updated on: {{ card.updated_on }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div> 
+</div>
+{% endblock %}

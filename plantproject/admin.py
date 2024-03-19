@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PlantProject
+from .models import PlantProject, PlantProjectCard
 
-# Register your models here.
 admin.site.register(PlantProject)
+admin.site.register(PlantProjectCard)
