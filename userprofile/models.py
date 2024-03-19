@@ -5,6 +5,9 @@ from plantproject.models import PlantProject
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = CloudinaryField('image')
-    bio = models.TextField()
+    image = CloudinaryField('image', null=True)
+    bio = models.TextField(blank=True)
     projects = models.ForeignKey(PlantProject, on_delete=models.SET_NULL, null=True, related_name='user_profiles')
+
+    def __str__(self):
+        return self.user.username
