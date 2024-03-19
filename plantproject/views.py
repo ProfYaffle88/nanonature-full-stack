@@ -118,3 +118,54 @@ class ProjectCardCreateView(CreateView):
     def get_success_url(self):
         project_pk = self.object.project.pk
         return reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': self.object.pk})
+
+
+def comment_edit(request, card_pk, comment_pk):
+    """
+    Display an individual comment for edit.
+
+    **Context**
+
+    ``card``
+        An instance of :model:`plantproject.PlantProjectCard`.
+    ``comment``
+        A single comment related to the card.
+    ``comment_form``
+        An instance of :form:`plantproject.CommentForm`
+    """
+    if request.method == "POST":
+        card = get_object_or_404(PlantProjcetCard, pk=card_pk)
+        comment = get_object_or_404(Comment, pk=comment_pk)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save()
+            comment.card = card
+            comment.save()
+            messages.success(request, 'Comment Updated!')
+        else:
+            messages.error(request, 'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('project-card-view', args=[card_pk]))
+
+def comment_delete(request, card_pk, comment_pk):
+    """
+    Delete an individual comment.
+
+    **Context**
+
+    ``card``
+        An instance of :model:`plantproject.PlantProjectCard`.
+    ``comment``
+        A single comment related to the post.
+    """
+    card = get_object_or_404(PlantProjectCard, pk=card_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.success(request, 'Comment deleted!')
+    else:
+        messages.error(request, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('post_detail', args=[card_pk]))

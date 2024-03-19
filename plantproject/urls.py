@@ -9,4 +9,6 @@ urlpatterns = [
     path('project/<int:project_pk>/create-card/', ProjectCardCreateView.as_view(), name='project-card-create'),
     path('project/<int:project_pk>/card/<int:card_pk>/', ProjectCardView.as_view(), name='project-card-view'),
     path('project/<int:pk>/', ProjectView.as_view(), name='project-view'),
+    path('project/<int:project_pk>/card/<int:card_pk>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
+    path('project/<int:project_pk>/card/<int:card_pk>/delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
 ]
