@@ -19,7 +19,7 @@
         <!-- Display entry details -->
         <div class="card mb-3">
             <div class="card-body">
-                <a href="{% url 'project-view' project_pk=project.pk %}" class="project-card-link">
+                <a href="{% url 'project-view' pk=project.pk %}" class="project-card-link">
                     <h3 class="card-title">{{ project.title }}</h3>                        
                 </a>
                 <!-- If no image included, use default -->

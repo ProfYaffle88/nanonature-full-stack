@@ -20,7 +20,9 @@ class UserProfileDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # You can include additional context data here if needed
+        # Get the user's projects
+        user_projects = PlantProject.objects.filter(creator=self.object.user)
+        context['projects'] = user_projects
         return context
 
 
