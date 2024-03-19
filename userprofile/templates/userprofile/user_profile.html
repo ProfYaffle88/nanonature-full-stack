@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ object.user }}</h5>
+        {% if "placeholder" in project.image.url %}
+        <img class="card-img-top" src="{% static 'images/default-profile.webp' %}" 
+            alt="placeholder profile image">
+        {% else %}
+        <img class="card-img-top" src=" {{ object.image.url }}" alt="{{ object.user }}">
+        {% endif %}
+        <p class="card-text">{{ object.bio }}</p>
+        <hr>
+        <!-- Display User Projects -->
+        {% for project in projects %}
+        <!-- Display entry details -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <a href="{% url 'project-view' project_pk=project.pk %}" class="project-card-link">
+                    <h3 class="card-title">{{ project.title }}</h3>                        
+                </a>
+                <!-- If no image included, use default -->
+                {% if "placeholder" in card.image.url %}
+                <img class="card-img-top" src="{% static 'images/default.webp' %}" alt="placeholder image">
+                {% else %}
+                <img class="card-img-top" src=" {{ project.image.url }}" alt="{{ project.title }}">
+                {% endif %}
+                <p class="card-text">{{ project.about }}</p>
+                <p class="card-text text-muted">Created on: {{ project.created_on }}</p>
+                <p class="card-text text-muted">Updated on: {{ project.updated_on }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> 
+{% endblock %}

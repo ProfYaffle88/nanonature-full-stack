@@ -7,4 +7,4 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = CloudinaryField('image')
     bio = models.TextField()
-    project = models.ForeignKey(PlantProject, on_delete=models.SET_NULL, null=True, related_name='user_profiles')
+    projects = models.ForeignKey(PlantProject, on_delete=models.SET_NULL, null=True, related_name='user_profiles')
