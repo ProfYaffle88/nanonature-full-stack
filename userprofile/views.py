@@ -10,13 +10,17 @@ class UserProfileDetailView(DetailView):
     View for displaying user profile details.
     """
     model = UserProfile
-    template_name = 'user_profile.html'
+    template_name = 'userprofile/user_profile.html'
+    context_object_name = 'profile'
+
+    def get_object(self, queryset=None):
+        # Retrieve the UserProfile object associated with the user's primary key
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(UserProfile, user_id=pk)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Get the user's projects
-        user_projects = Project.objects.filter(user=self.object.user)
-        context['projects'] = user_projects
+        # You can include additional context data here if needed
         return context
 
 
