@@ -25,7 +25,7 @@
                                 <h2 class="card-title">{{ project.title }}</h2>
                             </a>
                             <p class="card-text">{{ project.about }}</p>
-                            <p class="creator">Creator: {{ project.creator }}</p>
+                            <p class="creator">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
                             <hr>
                             <p class="card-text text-muted h6">{{ project.created_on}}</p>
                             <p class="card-text text-muted h6">{{ project.updated_on}}</p>
