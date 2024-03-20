@@ -80,8 +80,7 @@ def edit_profile(request):
 def delete_user(request):
     if request.method == 'POST':
         request.user.delete()
-        # Redirect to confirmation page or logout
         logout(request)
-        return redirect('/')  # Redirect to home page after logout
+        return redirect('/')
 
-    return render(request, 'delete_user.html')  # Render a confirmation page with a delete button
+    return render(request, 'delete_user.html')

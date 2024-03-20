@@ -24,6 +24,10 @@
                     <p class="card-text text-muted">Updated on: {{ project.updated_on }}</p>
                     {% if user.is_authenticated and user == project.creator %}
                     <a href="{% url 'project-card-create' project_pk=project.pk %}" class="btn btn-primary">Make a new entry in this Project</a>
+                    <form id="delete-form" action="{% url 'delete-project' project.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="button" onclick="confirmDelete()">Delete Project</button>
+                    </form>
                     {% endif %}
                 </div>
             </div>
@@ -51,4 +55,8 @@
         </div>
     </div> 
 </div>
+{% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

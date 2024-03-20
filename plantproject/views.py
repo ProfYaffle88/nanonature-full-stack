@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from .models import PlantProject, PlantProjectCard, Comment
 from .forms import ProjectForm, ProjectCardForm, CommentForm
 
@@ -202,3 +203,16 @@ def comment_delete(request, project_pk, card_pk, comment_pk):
         messages.error(request, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk}))
+
+
+@login_required
+def delete_project(request, project_pk):
+    project = get_object_or_404(PlantProject, pk=project_pk)
+    if request.user == project.creator:
+        if request.method == 'POST':
+            project.delete()
+            return redirect('userprofile:user-profile', pk=request.user.pk)
+        else:
+            return redirect('project-view', pk=project_pk)
+    else:
+        return render(request, 'error_page.html', {'message': 'You are not authorized to delete this project.'})
