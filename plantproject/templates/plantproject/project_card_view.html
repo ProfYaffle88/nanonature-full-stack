@@ -54,8 +54,11 @@
                             </div>
                             {% if user.is_authenticated and comment.author == user %}
                             <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
-                            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>                            
                             {% endif %}
+                            {% if user.is_authenticated and comment.author == user or project.creator == user %}
+                            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                            {% endif %}
+
                         </div>
                         <!-- Our for loop ends here -->
                         {% endfor %}
@@ -67,7 +70,7 @@
                         {% if user.is_authenticated %}
                         <h3>Leave a comment:</h3>
                         <p>Posting as: {{ user.username }}</p>
-                        <form id="CommentForm" method="post" style="margin-top: 1.3em;">
+                        <form id="commentForm" method="post" style="margin-top: 1.3em;">
                             {{ comment_form | crispy }}
                             {% csrf_token %}
                             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
@@ -88,7 +91,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Are you sure you want to delete your comment?
+                        Are you sure you want to delete {% if user.is_authenticated and comment.author %}your{% else %}this user's{% endif %} comment?
                         This action cannot be undone.
                     </div>
                     <div class="modal-footer">
