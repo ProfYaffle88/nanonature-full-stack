@@ -7,7 +7,7 @@ body {
     color: #fff;
 }
 
-.modal-body, .modal-title {
+.modal-body, .modal-title, body .alert {
     color: #143601;
 }
 
