@@ -1,5 +1,5 @@
-from .models import PlantProject, PlantProjectCard, Comment
 from django import forms
+from .models import PlantProject, PlantProjectCard, Comment
 
 
 class ProjectForm(forms.ModelForm):
@@ -19,8 +19,5 @@ class CommentForm(forms.ModelForm):
     Form class for users to comment on a project card
     """
     class Meta:
-        """
-        Specify the django model and order of the fields
-        """
         model = Comment
         fields = ('body',)
