@@ -6,7 +6,7 @@ from .models import UserProfile
 class UserProfileForm(forms.ModelForm):
     # Fields from the UserProfile model
     bio = forms.CharField(max_length=500, required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
-    image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
+    image = forms.CloudinaryField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
 
     class Meta:
         model = UserProfile
