@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import DetailView
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+
 from .forms import SignupForm, UserProfileForm
 from .models import UserProfile
 from plantproject.models import PlantProject
@@ -31,21 +32,31 @@ class UserProfileDetailView(DetailView):
         return context
 
 
-class CustomSignupView(LoginView):
+class CustomSignupView(FormView):
     """
-    View for displaying custom signup form that updates both User and UserProfile
+    View for displaying custom signup form that updates User
     """
     template_name = 'signup.html'
     form_class = SignupForm
+    success_url = 'userprofile:custom_profile'
+    
+    print("Success URL:", success_url)
+    
+    def form_valid(self, form):        
+        user = form.save()
+        login(self.request, user)
+        return HttpResponseRedirect(self.success_url)
+
+
+class CustomProfileView(LoginView):
+    """
+    View for displaying custom signup form that updates UserProfile after User creation
+    """
+    template_name = 'create_user_profile.html'
+    form_class = SignupForm
 
     def form_valid(self, form):
-        # user.save()
         user = form.save()
-        
-        bio = form.cleaned_data.get('bio')
-        image = form.cleaned_data.get('image')
-        UserProfile.objects.create(user=user, bio=bio, image=image)
-
         return HttpResponseRedirect(self.get_success_url())
 
 

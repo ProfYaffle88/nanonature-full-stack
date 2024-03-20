@@ -7,7 +7,7 @@ body {
     color: #fff;
 }
 
-.modal-body, .modal-title, body .alert {
+.modal-body, .modal-title, body .alert, .login-status, .dark-text {
     color: #143601;
 }
 
@@ -60,8 +60,6 @@ body {
     width: 100%;
     height: auto;
 }
-
-/*  */
 
 .creator {
     color: #fff;
@@ -126,12 +124,17 @@ body {
     color: #143601;
 }
 
+.btn-submit,
 .btn-signup,
 .btn-edit {
     background-color: #538D22;
     color: #fff;
 }
 
+.btn-submit:hover,
+.btn-submit:active,
+.btn-edit:hover,
+.btn-edit:active,
 .btn-signup:hover,
 .btn-signup:active {
     background-color: #143601;
@@ -164,6 +167,12 @@ body {
     color: #aad576;
     background: transparent;
     border: none;
+}
+
+.highlighted {
+    border: 3px solid #fff;
+    border-radius: .3rem; 
+    background-color: #73a942; 
 }
 
 /* Media Queries */
