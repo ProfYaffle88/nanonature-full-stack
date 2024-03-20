@@ -5,7 +5,7 @@
 
 <div class="container-fluid card-body dark-text">
     <h1 class="dark-text">Create a New Project</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn-submit" type="submit">Create</button>
