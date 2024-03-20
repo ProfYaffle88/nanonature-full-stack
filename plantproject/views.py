@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, get_object_or_404, reverse
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import PlantProject, PlantProjectCard
+from .models import PlantProject, PlantProjectCard, Comment
 from .forms import ProjectForm, ProjectCardForm, CommentForm
 
 
@@ -152,7 +153,7 @@ class ProjectCardCreateView(CreateView):
         return reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': self.object.pk})
 
 
-def comment_edit(request, card_pk, comment_pk):
+def comment_edit(request, project_pk, card_pk, comment_pk):
     """
     Display an individual comment for edit.
 
@@ -178,9 +179,9 @@ def comment_edit(request, card_pk, comment_pk):
         else:
             messages.error(request, 'Error updating comment!')
 
-    return HttpResponseRedirect(reverse('project-card-view', args=[card_pk]))
+    return HttpResponseRedirect(reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk}))
 
-def comment_delete(request, card_pk, comment_pk):
+def comment_delete(request, project_pk, card_pk, comment_pk):
     """
     Delete an individual comment.
 
@@ -200,4 +201,4 @@ def comment_delete(request, card_pk, comment_pk):
     else:
         messages.error(request, 'You can only delete your own comments!')
 
-    return HttpResponseRedirect(reverse('project_card_view', args=[card_pk]))
+    return HttpResponseRedirect(reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk}))

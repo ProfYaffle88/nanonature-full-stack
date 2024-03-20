@@ -7,6 +7,10 @@ body {
     color: #fff;
 }
 
+.modal-body, .modal-title {
+    color: #143601;
+}
+
 .brand {
     font-family: "Rubik Moonrocks", sans-serif;
     font-size: 3.6rem;
