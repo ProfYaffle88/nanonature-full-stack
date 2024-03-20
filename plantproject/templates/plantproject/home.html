@@ -6,12 +6,11 @@
 
 <div class="container-fluid">
     <div class="row">
-
         <!-- Projects Column -->
         <div class="col-12 mt-3 left">
             <!-- Project containers within column -->
-            {% for project in object_list %}
             <div class="col-md-4">
+                {% for project in object_list %}
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="image-container">
@@ -22,27 +21,24 @@
                             {% else %}
                             <img class="card-img-top" src=" {{ project.image.url }}" alt="{{ project.title }}">
                             {% endif %}
-                            <div class="image-flash">
-                                <p class="creator">Creator: {{ project.creator }}</p>
-                            </div>
                             <a href="{% url 'project-view' project.pk %}" class="project-link">
                                 <h2 class="card-title">{{ project.title }}</h2>
                             </a>
                             <p class="card-text">{{ project.about }}</p>
+                            <p class="creator">Creator: {{ project.creator }}</p>
                             <hr>
                             <p class="card-text text-muted h6">{{ project.created_on}}</p>
                             <p class="card-text text-muted h6">{{ project.updated_on}}</p>
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:2 %}
-            </div>
-            <div class="row">
-                {% endif %}
+                <!-- {% if forloop.counter|divisibleby:2 %}
+                {% endif %} -->
                 {% endfor %}
             </div>
         </div>
     </div>
+    
 
     <!-- Pagination for projects -->
     {% if is_paginated %}
