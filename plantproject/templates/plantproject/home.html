@@ -6,20 +6,21 @@
 
 <div class="container-fluid">
     
-        <div class="col-12 mt-3">
-            <div class="card mb-4">
-                <div class="timeline">
+        <div class="col-12 mt-3">            
+                <div class="card mb-4 timeline">
                     {% for project in object_list %}
                     <div class="d-flex row">
                         {% if forloop.counter|divisibleby:2 %}
-                        <div class="timeline__middle"></div>
+                        <div class="timeline__middle">
+                            <div class="timeline__branch" style="--branch-index: {{ forloop.counter0 }}"></div>
+                        </div>
                         <div class="timeline__component timeline__spacer"></div>
                         {% endif %}               
                         <div class="timeline__component{% if forloop.counter|divisibleby:2 %} timeline__component--right{% endif %}">
                             <div class="card-dark">
                                 <!-- If no image included, use default (requires upload to static) -->
                                 {% if "placeholder" in project.image.url %}
-                                <img class="card-img-top" src="{% static 'images/default.webp' %}" alt="placeholder image">
+                                <img class="card-img-top" src="{% static 'images/default.png' %}" alt="placeholder image">
                                 {% else %}
                                 <img class="card-img-top" src="{{ project.image.url }}" alt="{{ project.title }}">
                                 {% endif %}
@@ -36,14 +37,15 @@
                             </div>
                         </div>
                         {% if not forloop.counter|divisibleby:2 %}
-                        <div class="timeline__middle"></div>
+                        <div class="timeline__middle">
+                            <div class="timeline__branch" style="--branch-index: {{ forloop.counter0|add:0 }}"></div>
+                        </div>
                         <div class="timeline__component timeline__spacer"></div>
                         {% endif %}
                     </div>
                     <br>
                     {% endfor %}
                 </div> 
-            </div>
         </div>
     
     
