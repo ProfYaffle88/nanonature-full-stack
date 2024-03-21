@@ -84,12 +84,15 @@
     </div>
 
     <main class="flex-shrink-0 main-bg">
-        {% if user.is_authenticated %}
-        <p class="text-end m-3 login-status">You are logged in as {{ user }}</p>
-        {% else %}
-        <p class="text-end m-3 login-status">You are not logged in</p>
-        {% endif %}
-
+        <div class="container">
+            <div class="row justify-content-end">
+                {% if user.is_authenticated %}
+                <div class="col-auto m-3 login-status">You are logged in as {{ user }}</div>
+                {% else %}
+                <div class="col-auto m-3 login-status">You are not logged in</div>
+                {% endif %}
+            </div>
+        </div>
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
@@ -97,7 +100,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
+    <footer class="footer py-3 dark-bg">
         <p class="m-0 text-center text-white">
             {% block copyright %}Lovingly grown by Professor Yaffle{% endblock copyright %}
         </p>
