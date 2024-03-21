@@ -7,6 +7,12 @@ body {
     color: #aad576;
 }
 
+img {
+    max-height: 400px;
+    max-width: 400px;
+    background-color: #245501;    
+}
+
 .modal-body, .modal-title, body .alert, .login-status, .dark-text {
     color: #143601;
     background-color: #aad576;
@@ -65,7 +71,13 @@ body {
     background-color: #1A4301;
     border-radius: .3rem;
     padding: 8px;
+    max-width: 100%;
+    max-height: 100%;
 }
+
+/* .card-dark img {
+    max-height: 50%;
+} */
 
 .card-focus {
     color: #1A4301;
@@ -130,19 +142,23 @@ body {
     width: 5px; /* Adjust the width of the middle line */
     background-color: #fff; /* Adjust the color of the middle line */
     position: absolute;
+    display: flex;
+    justify-content: space-between;
     top: 0;
     bottom: 0;
     padding:0;
     left: 50%;
-    border-radius: 50%;
+    border-radius: 20%;
     transform: translateX(-50%);
 }
 
 .timeline__branch {
     position: absolute;
-    top: 0;
     left: 50%;
     transform: translateX(-50%);
+    --branch-index: 0; /* default */
+    --top-gap: calc(var(--branch-index) * 25%);
+    top: var(--top-gap);
     width: 20px;
     height: 20px;
     border-radius: 50%;
