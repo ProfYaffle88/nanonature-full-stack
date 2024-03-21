@@ -4,19 +4,26 @@
 
 body {
     background-color: #143601; /* Sort */
-    color: #fff;
+    color: #aad576;
 }
 
 .modal-body, .modal-title, body .alert, .login-status, .dark-text {
     color: #143601;
+    background-color: #aad576;
+    border-radius: .3rem;
 }
 
 .brand {
     font-family: "Rubik Moonrocks", sans-serif;
     font-size: 3.6rem;
     font-weight: 400;
-    color: #fff;
+    color: #aad576;
     padding-left: 1rem;
+}
+
+.brand-font {
+    font-family: "Rubik Moonrocks", sans-serif;
+    font-weight: 400;
 }
 
 .thin {
@@ -40,6 +47,25 @@ body {
 .card {
     border: none;
     background-color: #aad576;
+}
+
+.card-main {
+    background-color: #aad576;
+    border-radius: .3rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.card-dark {
+    color: #aad576;
+    background-color: #1A4301;
+    border-radius: .3rem;
+}
+
+.card-focus {
+    color: #1A4301;
+    background-color: #538D22;
+    border-radius: .3rem;
 }
 
 /* Images */
@@ -99,7 +125,9 @@ body {
     transform: skew(15deg);
     z-index: 100;
 } */
-
+.footer {
+    margin-top: 20px;
+}
 .profile-image {
     width: 75%;
 }
