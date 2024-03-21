@@ -85,6 +85,37 @@ img {
     border-radius: .3rem;
 }
 
+/* Living Edge - js animated div */
+
+.living-edge-top {
+
+}
+
+.living-edge-bottom {
+
+}
+
+.wave-top {
+    position: absolute;
+    top: 112px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave-top svg {
+    position: relative;
+    display: block;
+    width: calc(142% + 1.3px);
+    height: 47px;
+}
+
+.wave-top .shape-fill {
+    fill: #1A4301;
+}
+
+
 /* Images */
 
 .image-container {
