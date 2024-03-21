@@ -5,43 +5,51 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="row">
-        <!-- Projects Column -->
-        <div class="col-12 mt-3 left">
-            <!-- Project containers within column -->
-            <div class="col-md-4">
-                {% for project in object_list %}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="image-container">
-                            <!-- If no image included, use default (requires upload to static) -->
-                            {% if "placeholder" in project.image.url %}
-                            <img class="card-img-top" src="{% static 'images/default.webp' %}" 
-                                alt="placeholder image">
-                            {% else %}
-                            <img class="card-img-top" src=" {{ project.image.url }}" alt="{{ project.title }}">
-                            {% endif %}
-                            <a href="{% url 'project-view' project.pk %}" class="project-link">
-                                <h2 class="card-title">{{ project.title }}</h2>
-                            </a>
-                            <p class="card-text">{{ project.about }}</p>
-                            <p class="creator">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
-                            <hr>
-                            <p class="card-text text-muted h6">{{ project.created_on}}</p>
-                            <p class="card-text text-muted h6">{{ project.updated_on}}</p>
+    
+        <div class="col-12 mt-3">
+            <div class="card mb-4">
+                <div class="timeline">
+                    {% for project in object_list %}
+                    <div class="d-flex row">
+                        {% if forloop.counter|divisibleby:2 %}
+                        <div class="timeline__middle"></div>
+                        <div class="timeline__component timeline__spacer"></div>
+                        {% endif %}               
+                        <div class="timeline__component{% if forloop.counter|divisibleby:2 %} timeline__component--right{% endif %}">
+                            <div class="card-dark">
+                                <!-- If no image included, use default (requires upload to static) -->
+                                {% if "placeholder" in project.image.url %}
+                                <img class="card-img-top" src="{% static 'images/default.webp' %}" alt="placeholder image">
+                                {% else %}
+                                <img class="card-img-top" src="{{ project.image.url }}" alt="{{ project.title }}">
+                                {% endif %}
+                                <a href="{% url 'project-view' project.pk %}" class="project-link">
+                                    <h2 class="card-title">{{ project.title }}</h2>
+                                </a>
+                                <p class="card-text">{{ project.about }}</p>
+                                <p class="creator">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
+                                <hr>
+                                <div class="timeline__date">
+                                    <p class="card-text text-muted h6">{{ project.created_on }}</p>
+                                    <p class="card-text text-muted h6">{{ project.updated_on }}</p>
+                                </div>
+                            </div>
                         </div>
+                        {% if not forloop.counter|divisibleby:2 %}
+                        <div class="timeline__middle"></div>
+                        <div class="timeline__component timeline__spacer"></div>
+                        {% endif %}
                     </div>
-                </div>
-                <!-- {% if forloop.counter|divisibleby:2 %}
-                {% endif %} -->
-                {% endfor %}
+                    <br>
+                    {% endfor %}
+                </div> 
             </div>
         </div>
-    </div>
+    
     
 
     <!-- Pagination for projects -->
-    {% if is_paginated %}
+    <!-- {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
@@ -52,5 +60,5 @@
             {% endif %}
         </ul>
     </nav>
-    {% endif %}
+    {% endif %} -->
 {% endblock %}
