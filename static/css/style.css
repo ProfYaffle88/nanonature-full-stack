@@ -115,6 +115,26 @@ img {
     fill: #1A4301;
 }
 
+.wave-bottom {
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.wave-bottom svg {
+    position: relative;
+    display: block;
+    width: calc(142% + 1.3px);
+    height: 22px;
+}
+
+.wave-bottom .shape-fill {
+    fill: #1A4301;
+}
 
 /* Images */
 
@@ -202,6 +222,7 @@ img {
 }
 
 .footer {
+    position: relative;
     margin-top: 20px;
 }
 
