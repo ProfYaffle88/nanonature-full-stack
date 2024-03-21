@@ -87,14 +87,23 @@ img {
 
 /* Living Edge - js animated div */
 
-.living-edge-top {
-
+.living-edge {
+    aspect-ratio: 960/50;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
-.living-edge-bottom {
-
+.living-edge-top-1 {
+    background-image: url('static/images/wave-haikei-header1.svg')
 }
 
+.living-edge-bottom-1 {
+    background-image: url('static/images/wave-haikei-footer1.svg');
+}
+
+/* 
 .wave-top {
     position: absolute;
     top: 112px;
@@ -134,7 +143,7 @@ img {
 
 .wave-bottom .shape-fill {
     fill: #1A4301;
-}
+} */
 
 /* Images */
 
