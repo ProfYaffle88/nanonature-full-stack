@@ -9,14 +9,21 @@
         <div class="col-12 mt-3">            
                 <div class="card mb-4 timeline">
                     {% for project in object_list %}
-                    <div class="col-5">
+                    <div class="d-flex col-12 {% if forloop.counter|divisibleby:2 %} justify-content-end{% endif %}">
                         {% if forloop.counter|divisibleby:2 %}
-                        <div class="timeline__component timeline__spacer"></div>
-                        <div class="timeline__middle">
-                            <div class="timeline__branch" style="--branch-index: {{ forloop.counter0 }}"></div>
+                        <div class="timeline__component timeline__spacer col-5"></div>
+                        <div class="timeline__middle col-2">
+                            <div class="timeline__branch" style="--branch-index: {{ forloop.counter }}">
+                                <svg>
+                                    <circle id="au" class="spot" cx="175" cy="{{ forloop.counter|add:'50' }}" r="4"></circle>
+                                    <circle id="sl" class="spot" cx="100" cy="{{ forloop.counter|add:'100' }}" r="4"></circle>
+                                    <circle id="cp" class="spot2" cx="0" cy="0" r="4"></circle>
+                                    <path id="curve" d="M0 0" stroke="white" stroke-width="4" stroke-linecap="round" fill="transparent"></path>
+                                </svg>
+                            </div>
                         </div>                        
                         {% endif %}               
-                        <div class="timeline__component{% if forloop.counter|divisibleby:2 %} timeline__component--right{% endif %}">
+                        <div class="timeline__component{% if forloop.counter|divisibleby:2 %} timeline__component--right{% else %}--left{% endif %} col-5">
                             <div class="card-dark">
                                 <!-- If no image included, use default (requires upload to static) -->
                                 {% if "placeholder" in project.image.url %}
@@ -37,10 +44,10 @@
                             </div>
                         </div>
                         {% if not forloop.counter|divisibleby:2 %}
-                        <div class="timeline__middle">
+                        <div class="timeline__middle col-2">
                             <div class="timeline__branch" style="--branch-index: {{ forloop.counter0|add:0 }}"></div>
                         </div>
-                        <div class="timeline__component timeline__spacer"></div>
+                        <div class="timeline__component timeline__spacer col-5"></div>
                         {% endif %}
                     </div>
                     <br>
