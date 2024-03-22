@@ -113,8 +113,8 @@ img {
 }
 
 .living-edge-bottom {
-    bottom: 50px;
-    z-index: -1;
+    bottom: 77px;
+    margin-top: 50px;
 }
 
 /* Images */
