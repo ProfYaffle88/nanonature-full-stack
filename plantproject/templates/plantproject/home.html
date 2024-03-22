@@ -11,7 +11,15 @@
             {% if forloop.counter|divisibleby:2 %}                
             <div class="timeline__component timeline__spacer col-6"></div>
             <div class="timeline__middle col-2"></div>
-            <svg id="svg_{{ forloop.counter }}"></svg>
+            <svg id="svg_{{ forloop.counter }}">
+                <path id="curve_{{ forloop.counter }}"></path>
+            </svg>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    drawBranchAndCalculateCoordinates({{ forloop.counter }});
+                });
+            </script>
+            
             {% endif %}
             <div
                 class="timeline__component timeline__component{% if forloop.counter|divisibleby:2 %}--right{% else %}--left{% endif %} col-5">
@@ -37,28 +45,18 @@
                 </div>
             </div>
             {% if not forloop.counter|divisibleby:2 %}
-            <svg id="svg_{{ forloop.counter }}"></svg>
+            <svg id="svg_{{ forloop.counter }}">
+                <path id="curve_{{ forloop.counter }}"></path>
+            </svg>
             <div class="timeline__middle col-2"></div>
             <div class="timeline__component timeline__spacer col-5"></div>                
             {% endif %}
             <script>
-                // Get the coordinates of the end-point (circle au)
-                var auX = parseFloat(document.getElementById("card-pos-{{ forloop.counter }}")
-                    .getBoundingClientRect().left) + 175; // Adjust as needed
-                var auY = parseFloat(document.getElementById("card-pos-{{ forloop.counter }}")
-                    .getBoundingClientRect().top) + 50; // Adjust as needed
-
-                // Get the coordinates of the start-point (circle sl)
-                var slX = parseFloat(document.getElementById("card-pos-{{ forloop.counter }}")
-                    .getBoundingClientRect().left) + (document.getElementById("project_{{ project.id }}")
-                    .offsetWidth / 2);
-                var slY = parseFloat(document.getElementById("card-pos-{{ forloop.counter }}")
-                    .getBoundingClientRect().top) + (document.getElementById("project_{{ project.id }}")
-                    .offsetHeight / 2);
-
-                // Call drawBranch function with the obtained coordinates to draw connecting branch
-                drawBranch(auX, auY, slX, slY);
+                document.addEventListener('DOMContentLoaded', function() {
+                    drawBranchAndCalculateCoordinates({{ forloop.counter }});
+                });
             </script>
+            
         </div>
         <br>
         {% endfor %}

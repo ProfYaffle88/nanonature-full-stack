@@ -88,6 +88,7 @@ img {
     padding: 16px;
     max-width: 85%;
     max-height: 100%;
+    min-width: 65%;
     text-wrap: wrap;
 }
 
