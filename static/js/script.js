@@ -19,12 +19,7 @@ const tweenbottom = KUTE.fromTo(
 ).start();
 
 
-function drawBranch() {
-    var p1x = parseFloat(document.getElementById("au").getAttribute("cx"));
-    var p1y = parseFloat(document.getElementById("au").getAttribute("cy"));
-    var p2x = parseFloat(document.getElementById("sl").getAttribute("cx"));
-    var p2y = parseFloat(document.getElementById("sl").getAttribute("cy"));
-
+function drawBranch(p1x, p1y, p2x, p2y) {
     // mid-point of line:
     var mpx = (p2x + p1x) * 0.5;
     var mpy = (p2y + p1y) * 0.5;
@@ -39,18 +34,18 @@ function drawBranch() {
     var c1x = mpx + offset * Math.cos(theta);
     var c1y = mpy + offset * Math.sin(theta);
 
-    // show where the control point is:
-    var c1 = document.getElementById("cp");
-    c1.setAttribute("cx", c1x);
-    c1.setAttribute("cy", c1y);
-
     // construct the command to draw a quadratic curve
     var curve = "M" + p1x + " " + p1y + " Q " + c1x + " " + c1y + " " + p2x + " " + p2y;
-    var curveElement = document.getElementById("curve");
+    var curveElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
     curveElement.setAttribute("d", curve);
+    curveElement.setAttribute("stroke", "white");
+    curveElement.setAttribute("stroke-width", "4");
+    curveElement.setAttribute("stroke-linecap", "round");
+    curveElement.setAttribute("fill", "transparent");
+    document.getElementById("svg_{{ forloop.counter }}").appendChild(curveElement);
 }
 
-// Draw curves after all content has been loaded
-window.onload = function() {
-    drawBranch();
-};
+// // Example usage:
+// window.onload = function() {
+//     drawBranch(175, 50, 100, 100); // Example coordinates, replace with your own
+// };

@@ -96,13 +96,13 @@
 
     <main class="flex-shrink-0 main-bg">
         
-            <div class="row justify-content-end">
-                {% if user.is_authenticated %}
-                <div class="col-auto login-status">You are logged in as {{ user }}</div>
-                {% else %}
-                <div class="col-auto login-status">You are not logged in</div>
-                {% endif %}
-            </div>
+        <div class="row justify-content-end">
+            {% if user.is_authenticated %}
+            <div class="col-auto login-status">You are logged in as {{ user }}</div>
+            {% else %}
+            <div class="col-auto login-status">You are not logged in</div>
+            {% endif %}
+        </div>
         
         {% block content %}
         <!-- Content Goes here -->
