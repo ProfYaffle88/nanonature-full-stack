@@ -1,5 +1,6 @@
 /* Google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Rubik+Moonrocks&display=swap');
+@import url('static/css/fonts/Rubik_Moonrocks/RubikMoonrocks-Regular.ttf');
+@import url('static/css/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf');
 
 * {
     font-family: "Comfortaa", sans-serif;
