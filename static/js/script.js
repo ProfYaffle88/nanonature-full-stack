@@ -27,12 +27,12 @@ function drawBranch(p1x, p1y, p2x, p2y, counter) {
 
 function drawBranchAndCalculateCoordinates(counter) {
     // Get the coordinates of the end-point (circle au)
-    var auX = parseFloat(document.getElementById("card-pos-" + counter).getBoundingClientRect().left) + 175; // Adjust as needed
-    var auY = parseFloat(document.getElementById("card-pos-" + counter).getBoundingClientRect().top) + 50; // Adjust as needed
+    var auX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.05 : 0.95);// Adjust as needed
+    var auY = parseFloat(document.getElementById("card-pos-" + counter).clientHeight) * 0.5; // Adjust as needed
 
     // Get the coordinates of the start-point (circle sl)
-    var slX = parseFloat(document.getElementById("card-pos-" + counter).getBoundingClientRect().left) + (document.getElementById("card-pos-" + counter).offsetWidth / 2);
-    var slY = parseFloat(document.getElementById("card-pos-" + counter).getBoundingClientRect().top) + (document.getElementById("card-pos-" + counter).offsetHeight / 2);
+    var slX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.33 : 0.66); // Adjust as needed
+    var slY = parseFloat(document.getElementById("card-pos-" + counter).clientHeight); // Adjust as needed
 
     // Call drawBranch function with the obtained coordinates to draw connecting branch
     drawBranch(auX, auY, slX, slY, counter);
