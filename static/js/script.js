@@ -7,7 +7,7 @@ function drawBranch(p1x, p1y, p2x, p2y, counter) {
     var theta = Math.atan2(p2y - p1y, p2x - p1x) - Math.PI / 2;
 
     // distance of control point from mid-point of line:
-    var offset = -30;
+    var offset = 25;
 
     // location of control point:
     var c1x = mpx + offset * Math.cos(theta);
@@ -27,11 +27,11 @@ function drawBranch(p1x, p1y, p2x, p2y, counter) {
 
 function drawBranchAndCalculateCoordinates(counter) {
     // Get the coordinates of the end-point (circle au)
-    var auX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.05 : 0.95);// Adjust as needed
+    var auX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.95 : 0.05);// Adjust as needed
     var auY = parseFloat(document.getElementById("card-pos-" + counter).clientHeight) * 0.5; // Adjust as needed
 
     // Get the coordinates of the start-point (circle sl)
-    var slX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.33 : 0.66); // Adjust as needed
+    var slX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.55 : 0.21); // Adjust as needed
     var slY = parseFloat(document.getElementById("card-pos-" + counter).clientHeight); // Adjust as needed
 
     // Call drawBranch function with the obtained coordinates to draw connecting branch
