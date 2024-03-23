@@ -134,10 +134,10 @@ img {
 
 .card-subfocus {
     color: #F6FFEB;
-    background-color: #538D22;
+    background-color: #73A942;
     border-radius: 2rem;
     max-width: 80%;
-    padding: 10px 10px;
+    padding: 2rem 2rem;
     margin: auto;
 }
 
