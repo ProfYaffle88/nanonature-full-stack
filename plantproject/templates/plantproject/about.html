@@ -3,13 +3,13 @@
 
 {% block content %}
 <div class="container card-main text-center dark-text">
-    <h1 class="mt-5 brand-font">About NanoNature</h1>
+    <h1 class="mt-3 brand-font brand-title">About NanoNature</h1>
 
-    <div class="container card-dark mt-5 dark-text">
+    <div class="container card-dark mt-3 dark-text">
         <div class="row justify-content-center">
             <div class="col-auto">
                 <h3 class="brand-font">Professor Yaffle</h3>
-                <h4>Site Founder</h4>
+                <h5>Original Gardener</h5>
                 <img src="{% static 'images/profyaff-about.webp' %}" class="img-fluid" alt="NanoNature's Founder - Professor Yaffle">
                 <p class="mt-3">
                     Hello there! I'm so happy you're interested in NanoNature and our community. 
@@ -19,22 +19,29 @@
                     Each project hosts a collection of 'entries' which will form a visual timelime for you, allowing you to reflect on your 
                     projects' progress and allowing other people to see the full scope of your vision! I want this to be a supportive community, 
                     sharing our knowledge and experience in order to help as many people as possible get started (or go further) in this 
-                    fascinating hobby. Please take the time to read our Community Guidelines and How-To sections 
+                    fascinating hobby. All feedback welcome via any socials and <a href="https://github.com/ProfYaffle88"> especially here</a>. This site belongs to everyone on it, so please take the time to read our Community Guidelines and How-To sections 
                     . . . and remember to help eachother grow!
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="container card-focus mt-5 dark-text">
-        <h2 class="text-center">How to Utilize Our Site</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis ex vel quam interdum pharetra vel vel odio. Nulla facilisi. Nullam quis justo in libero aliquam fermentum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis ex vel quam interdum pharetra vel vel odio. Nulla facilisi. Nullam quis justo in libero aliquam fermentum.</p>
+    <div class="container mt-3 card-subfocus">
+        <h2 class="text-center pt-4">How to Utilize Our Site</h2>
+        <hr>
+        <p class="pb-4 mx-1">This key idea is is all about seeing progress over time! In this hobby, as in any long-term hobby, a great deal of satisfaction comes from seeing how something has changed. NanoNature provides a simple framework for anyone to start documenting their projects and share them with the community.</p>
+        <p class="pb-4 mx-2"><b>Step 1: Create your Profile</b> -- Button in the the top right!</p>
+        <p class="pb-4 mx-2"><b>Step 2: Create your first Project</b> -- Button in the top right!</p>
+        <p class="pb-4 mx-3">You can add a name, a description and a picture (Don't panic, these can be updated later if you want)</p>
+        <p class="pb-4 mx-2"><b>Step 3: Create a new entry in your new project</b> -- Button inside of the Project!</p>
+        <p class="pb-4 mx-3">Each entry has a title, description and picture. Other community members can comment beneath these entries, so don't be afraid to ask for help!</p>
+        <p class="pb-4 mx-3">Over time, your projects will fill up with entries creating beautiful timelines for you to track your progress and others to marvel at!</p>
     </div>
 
-    <div class="container card-focus dark-text">
-        <h2 class="text-center">Our Community Guidelines</h2>
-        <p>
+    <div class="container mt-3 card-subfocus">
+        <h2 class="text-center pt-4">Our Community Guidelines</h2>
+        <hr>
+        <p class="mx-1">
             Welcome to the NanoNature community! This is a safe space to discuss and share all your terrarium, bonsai and indoor gardening projects. 
             I want everyone to be welcome in our community; share knowledge and support other community members! 
             This is a hobby area all about nurturing after all! 
@@ -44,20 +51,20 @@
             If someone has a project they've poured their heart into, they have every right to remove spam, negativity or anything else they deem unwelcome from their space. 
             To help everyone enjoy our community, I ask that when you post, you keep in mind the following: 
         </p>
-        <ul>
-            <li>We don't allow defamatory, indecent, offensive, profane, discriminatory, misleading, unlawful or threatening comments.</li>
-            <li>Personal attacks, name-calling, trolling and abuse will not be tolerated.</li>
-            <li>Spamming or posting promotional material is not permitted.</li>
-            <li>Posting links to third party websites is acceptable as long as it is relevant to the discussion and not promotional or malicious.</li>
-            <li>We reserve the right to delete comments at our discretion and block any repeat offenders. We will remove content that is fraudulent, deceptive or misleading.</li>
-            <li>Coordinated group attacks and bullying will not be tolerated.</li>
-            <li>Respect that other people in the community have had different life experiences and may have a different perspective to yours. We welcome different viewpoints.</li>
-            <li>Our community is a public place. Don't post personal information that you would not be comfortable sharing with a stranger. We recommend that you don't post any information that may identify you or anyone else, such as your address, email address or phone number.</li>
+        <ul class="mx-3">
+            <li class="d-flex justify-content-center p-3"><em>We don't allow defamatory, indecent, offensive, profane, discriminatory, misleading, unlawful or threatening comments.</em></li>
+            <li class="d-flex justify-content-center p-3"><em>Personal attacks, name-calling, trolling and abuse will not be tolerated.</em></li>
+            <li class="d-flex justify-content-center p-3"><em>Spamming or posting promotional material is not permitted.</em></li>
+            <li class="d-flex justify-content-center p-3"><em>Posting links to third party websites is acceptable as long as it is relevant to the discussion and not promotional or malicious.</em></li>
+            <li class="d-flex justify-content-center p-3"><em>We reserve the right to delete comments at our discretion and block any repeat offenders. We will remove content that is fraudulent, deceptive or misleading.</em></li>
+            <li class="d-flex justify-content-center p-3"><em>Coordinated group attacks and bullying will not be tolerated.</em></li>
+            <li class="d-flex justify-content-center p-3"><em>Respect that other people in the community have had different life experiences and may have a different perspective to yours. We welcome different viewpoints.</em></li>
+            <li class="d-flex justify-content-center p-3"><em>Our community is a public place. Don't post personal information that you would not be comfortable sharing with a stranger. We recommend that you don't post any information that may identify you or anyone else, such as your address, email address or phone number.</em></li>
         </ul>
-        <p>
+        <p class="pt-3 mx-1">
             If you have a question or suggestion about NanoNature, please contact the site founder and current site admin: Professor Yaffle. There is a contact link in the About section at the top of the page and in the footer on every page.
         </p>
-        <p>Thank you for being excellent to eachother!</p>
+        <p class="pb-4 mx-3">Thank you for being excellent to eachother!</p>
     </div>
 </div>
 {% endblock %}
