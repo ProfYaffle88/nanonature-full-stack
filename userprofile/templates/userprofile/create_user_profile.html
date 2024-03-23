@@ -5,7 +5,14 @@
 
 {% block head_title %}{% trans "Create Account" %}{% endblock head_title %}
 
+
 {% block content %}
+
+{% if user.userprofile %}
+    <script>
+        window.location.href = "{% url 'home' %}";
+    </script>
+{% endif %}
 
 <div class="container dark-text mt-5 mb-5 p-3" style="width: auto;">
     <div class="row">
