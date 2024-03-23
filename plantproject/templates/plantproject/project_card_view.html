@@ -12,7 +12,7 @@
                     <h3 class="card-title">Project: <a href="{% url 'project-view' pk=object.project.pk %}">{{ object.project.title }}</a></h3>
                     <h2 class="card-title">{{ object.title }}</h2>
                     <div class="row justify-content-center">
-                        <img class="card-img-top" src="{{ object.image.url }}" alt="{{ object.title }}">
+                        <img class="img-fluid" src="{{ object.image.url }}" alt="{{ object.title }}">
                     </div>
                     <p class="card-text">{{ object.entry_body }}</p>
                     <p class="card-text">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
@@ -36,8 +36,6 @@
                         </strong>
                     </div>                    
                 </div>
-
-                <hr>
 
                 <!-- Displaying Comments -->
                 <div class="row">
