@@ -5,9 +5,11 @@
 
 {% block head_title %}{% trans "Create Account" %}{% endblock head_title %}
             
-            {% block content %}
-            
-            <div class="container dark-text">
+{% block content %}
+<div class="container-fluid">
+    <div class="col">
+        <div class="row">
+            <div class="container dark-text mt-5 mb-5 p-3" style="width: auto;">
                 <div class="row">
                     <div class="col-md-8 mt-3 offset-md-2">
                         <h3>{% trans "Create Account" %}</h3>
@@ -37,4 +39,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
