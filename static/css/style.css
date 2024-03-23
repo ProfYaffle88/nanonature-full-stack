@@ -6,6 +6,11 @@
     font-family: "Comfortaa", sans-serif;
 }
 
+.container {
+    height: 100%;
+    width: 80%
+}
+
 body {
     background-color: #143601; /* Sort */
     color: #F6FFEB;
@@ -87,7 +92,7 @@ img {
 
 .card-main {
     background-color: #aad576;
-    border-radius: 10%;
+    border-radius: 7%;
     padding: 10px 10px;
     margin: 50px auto;
     max-width: 85%;
@@ -124,6 +129,10 @@ img {
     background-color: #538D22;
     border-radius: 2rem;
     max-width: 80%;
+}
+
+.signup-box {
+    margin: auto;
 }
 
 /* Living Edge - js animated div */

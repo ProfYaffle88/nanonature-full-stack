@@ -7,29 +7,35 @@
 
 {% block content %}
 
-<div class="container dark-text">
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-            <h3>{% trans "Sign In" %}</h3>
+<div class="container-fluid">
+    <div class="col">
+        <div class="row">
+            <div class="container dark-text mt-5 mb-5 p-3" style="width: auto;">
+                <div class="row">
+                    <div class="col-md-8 mt-3 offset-md-2">
+                        <h3>{% trans "Sign In" %}</h3>
 
-            <p>{% blocktrans %}Welcome back to NanoNature. To create projects, or leave a comments and likes, please log in. 
-                If you have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
-                first.{% endblocktrans %}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-            <form class="login" method="POST" action="{% url 'account_login' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
-                {% if SOCIALACCOUNT_ENABLED %}
-                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-                {% endif %}
-            </form>
+                        <p>{% blocktrans %}Welcome back to NanoNature. To create projects, or leave a comments and likes, please log in. 
+                            If you have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
+                            first.{% endblocktrans %}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 mt-3 offset-md-2">
+                        <form class="login" method="POST" action="{% url 'account_login' %}">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
+                            {% if SOCIALACCOUNT_ENABLED %}
+                            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
