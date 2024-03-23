@@ -11,6 +11,7 @@
 
 * {
     font-family: "Comfortaa", sans-serif;
+    color: #F6FFEB;
 }
 
 .container {
@@ -18,20 +19,17 @@
     width: 80%
 }
 
-body {
-    background-color: #143601; /* Sort */
-    color: #F6FFEB;
-}
-
 a {
     text-decoration: none;
-    color: #73A942;
+    color: #1A4301;
+}
+
+input {
+    color: #1A4301;
 }
 
 img {
-    max-height: 400px;
-    max-width: 400px;
-    background-color: #245501;    
+    margin: 0 auto;
 }
 
 .modal-body, .modal-title, body .alert, .login-status, .dark-text {
@@ -110,6 +108,7 @@ img {
     background-color: #1A4301;
     border-radius: 2rem;
     padding: 16px;
+    margin: auto;
 
     /* max-width: 85%;
     max-height: 100%;
@@ -129,6 +128,8 @@ img {
     background-color: #538D22;
     border-radius: 2rem;
     max-width: 85%;
+    padding: 2rem 2rem;
+    margin: auto;
 }
 
 .card-subfocus {
@@ -136,6 +137,8 @@ img {
     background-color: #538D22;
     border-radius: 2rem;
     max-width: 80%;
+    padding: 10px 10px;
+    margin: auto;
 }
 
 .signup-box {
@@ -294,13 +297,17 @@ svg {
     color: #143601;
 }
 
+.btn-primary,
 .btn-submit,
 .btn-signup,
 .btn-edit {
     background-color: #538D22;
     color: #F6FFEB;
+    border-color: transparent;
 }
 
+.btn-primary:hover,
+.btn-primary:active,
 .btn-submit:hover,
 .btn-submit:active,
 .btn-edit:hover,
@@ -309,6 +316,7 @@ svg {
 .btn-signup:active {
     background-color: #143601;
     color: #F6FFEB;
+    border-color: #F6FFEB;
 }
 
 .link {
