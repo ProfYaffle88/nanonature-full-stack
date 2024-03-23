@@ -29,6 +29,10 @@ img {
     z-index: 1;
 }
 
+.light-text {
+    color: #F6FFEB;
+}
+
 .login-status {
     margin-right: 52px;
     margin-top: -28px;
@@ -38,13 +42,20 @@ img {
     font-family: "Rubik Moonrocks", sans-serif;
     font-size: 3.6rem;
     font-weight: 400;
-    color: #73A942;
+    color: #aad576;
     padding-left: 1rem;
 }
 
 .brand-font {
     font-family: "Rubik Moonrocks", sans-serif;
     font-weight: 400;
+}
+
+.brand-title {
+    background-color: #F6FFEB;
+    border-radius: 2rem;
+    display: inline-block;
+    padding: 0 15px;
 }
 
 .thin {
@@ -76,22 +87,23 @@ img {
 
 .card-main {
     background-color: #aad576;
-    border-radius: .3rem;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    border-radius: 10%;
+    padding: 10px 10px;
+    margin: 50px auto;
+    max-width: 85%;
 }
 
 .card-dark {
     color: #F6FFEB;
     background-color: #1A4301;
-    border-radius: .3rem;
+    border-radius: 2rem;
     padding: 16px;
 
     /* max-width: 85%;
     max-height: 100%;
     min-width: 65%; */
-    width: 80%;
-    height: 90%;
+    max-width: 85%;
+    height: 100%;
 
     text-wrap: wrap;
 }
@@ -103,7 +115,15 @@ img {
 .card-focus {
     color: #1A4301;
     background-color: #538D22;
-    border-radius: .3rem;
+    border-radius: 2rem;
+    max-width: 85%;
+}
+
+.card-subfocus {
+    color: #F6FFEB;
+    background-color: #538D22;
+    border-radius: 2rem;
+    max-width: 80%;
 }
 
 /* Living Edge - js animated div */
@@ -285,7 +305,7 @@ svg {
 a:hover,
 a:active {
     color: #143601;
-    text-decoration: underline;
+    text-decoration: none;
     background-color: #73A942;
     border-radius: .3rem;
 }
@@ -311,6 +331,11 @@ a:active {
 .highlighted {
     border: 3px solid #fff;
     border-radius: .3rem; 
+    background-color: #73a942; 
+}
+
+.highlighted-brand:hover {
+    border-radius: 10%; 
     background-color: #73a942; 
 }
 
