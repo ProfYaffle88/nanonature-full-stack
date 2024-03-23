@@ -21,23 +21,6 @@ class HomeView(ListView):
     template_name = 'plantproject/home.html'
     paginate_by = 8
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        cy_values_1, cy_values_2 = self.calculate_cy_values(self.object_list)
-        context['cy_values_1'] = cy_values_1
-        context['cy_values_2'] = cy_values_2
-        return context
-
-    def calculate_cy_values(self, object_list):
-        cy_values_1 = []
-        cy_values_2 = []
-        for i, project in enumerate(object_list):
-            cy_value_1 = 50 + i * 50
-            cy_value_2 = 100 + i * 50
-            cy_values_1.append(cy_value_1)
-            cy_values_2.append(cy_value_2)
-        return cy_values_1, cy_values_2
-
 
 class ProjectView(DetailView):
     """
