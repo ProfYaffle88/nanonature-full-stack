@@ -44,6 +44,12 @@ img {
     color: #F6FFEB;
 }
 
+.nav-link,
+.navbar-nav,
+.navbar-dark {
+    color: #F6FFEB;
+}
+
 .login-status {
     margin-right: 52px;
     margin-top: -28px;
