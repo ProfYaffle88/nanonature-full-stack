@@ -101,6 +101,11 @@ img {
     background-color: #aad576;
 }
 
+.card-text {
+    max-width: 85%;
+    text-wrap: wrap;
+}
+
 .card-main {
     background-color: #aad576;
     border-radius: 7%;
