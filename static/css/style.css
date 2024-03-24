@@ -416,3 +416,10 @@ a:active {
         border-radius: 1rem;
     }
 }
+
+@media (min-width: 2000px) {
+    .main-bg {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+}
