@@ -1,3 +1,7 @@
+function navigateToURL(url) {
+    window.location.href = url;
+}
+
 function drawBranch(p1x, p1y, p2x, p2y, counter) {
     // mid-point of line:
     var mpx = (p2x + p1x) * 0.5;
@@ -7,7 +11,7 @@ function drawBranch(p1x, p1y, p2x, p2y, counter) {
     var theta = Math.atan2(p2y - p1y, p2x - p1x) - Math.PI / 2;
 
     // distance of control point from mid-point of line:
-    var offset = -30;
+    var offset = 25;
 
     // location of control point:
     var c1x = mpx + offset * Math.cos(theta);
@@ -27,11 +31,11 @@ function drawBranch(p1x, p1y, p2x, p2y, counter) {
 
 function drawBranchAndCalculateCoordinates(counter) {
     // Get the coordinates of the end-point (circle au)
-    var auX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.05 : 0.95);// Adjust as needed
+    var auX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.95 : 0.03);// Adjust as needed
     var auY = parseFloat(document.getElementById("card-pos-" + counter).clientHeight) * 0.5; // Adjust as needed
 
     // Get the coordinates of the start-point (circle sl)
-    var slX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.33 : 0.66); // Adjust as needed
+    var slX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.55 : 0.21); // Adjust as needed
     var slY = parseFloat(document.getElementById("card-pos-" + counter).clientHeight); // Adjust as needed
 
     // Call drawBranch function with the obtained coordinates to draw connecting branch
@@ -39,21 +43,21 @@ function drawBranchAndCalculateCoordinates(counter) {
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
+function animateWaves() {
     const tweentop = KUTE.fromTo(
         '#wave-top-1',
         { path: '#wave-top-1' },
         { path: '#wave-top-2' },
-        { repeat: Infinity, duration: 1000, yoyo: true }
+        { repeat: 300, duration: 1000, yoyo: true }
     ).start();
 
     const tweenbottom = KUTE.fromTo(
         '#wave-bottom-1',
         { path: '#wave-bottom-1' },
         { path: '#wave-bottom-2' },
-        { repeat: Infinity, duration: 1000, yoyo: true }
+        { repeat: 300, duration: 1000, yoyo: true }
     ).start();
-});
+};
 
 function confirmDelete() {
     if (confirm('Are you sure you want to delete this project?')) {
@@ -61,8 +65,13 @@ function confirmDelete() {
     }
 };
 
+function confirmUserDelete() {
+    if (confirm('Are you sure you want to delete your profile? This cannot be undone!')) {
+        document.getElementById('delete-user').submit();
+    }
+};
 
-// // Example usage:
-// window.onload = function() {
-//     drawBranch(175, 50, 100, 100); // Example coordinates, replace with your own
-// };
+document.addEventListener('DOMContentLoaded', function() {
+    animateWaves();
+    requestAnimationFrame(drawBranchAndCalculateCoordinates);
+});
