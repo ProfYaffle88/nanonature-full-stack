@@ -6,80 +6,80 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card mb-4">
-                <div class="card-body">
+            <div class="card card-main mb-4">
+                <!-- Entry Detail -->
+                <div class="card-focus">
                     <h3 class="card-title">Project: <a href="{% url 'project-view' pk=object.project.pk %}">{{ object.project.title }}</a></h3>
                     <h2 class="card-title">{{ object.title }}</h2>
-                    <img class="card-img-top" src="{{ object.image.url }}" alt="{{ object.title }}">
-                    <p class="card-text">{{ object.entry_body }}</p>
-                    <p class="card-text text-muted">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
-                    <p class="card-text text-muted">Created on: {{ object.created_on }}</p>
-                    <p class="card-text text-muted">Updated on: {{ object.updated_on }}</p>
-                    
-                </div>
-            </div>
-            <div class="text-center">
-                {% if prev_card %}
-                <a href="{% url 'project-card-view' project.pk prev_card.pk %}" class="btn btn-primary mr-2">Previous</a>
-                {% endif %}
-                {% if next_card %}
-                <a href="{% url 'project-card-view' project.pk next_card.pk %}" class="btn btn-primary">Next</a>
-                {% endif %}
-            </div>
-            <!-- Displaying count of comments -->
-            <div class="row">
-                <div class="col-12">
-                    <strong class="text-secondary">
-                        <i class="far fa-comments"></i> {{ comment_count }}
-                    </strong>
-                </div>
-                <div class="col-12">
-                    <hr>
-                </div>
-            </div>
-            <!-- Displaying Comments -->
-            <div class="row">
-                <div class="col-md-8 card mb-4  mt-3 ">
-                    <h3>Comments:</h3>
-                    <div class="card-body">
-                        <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                        {% for comment in comments %}
-                        <div class="p-2 comments">
-                            <p class="font-weight-bold">
-                                {{ comment.author }}
-                                <span class="font-weight-normal">
-                                    {{ comment.created_on }}
-                                </span> wrote:
-                            </p>
-                            <div id="comment{{ comment.id }}">
-                                {{ comment.body | linebreaks }}
-                            </div>
-                            {% if user.is_authenticated and comment.author == user %}
-                            <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
-                            {% endif %}
-                            {% if user.is_authenticated and comment.author == user or project.creator == user %}
-                            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
-                            {% endif %}
-
-                        </div>
-                        <!-- Our for loop ends here -->
-                        {% endfor %}
+                    <div class="row justify-content-center">
+                        <img class="img-fluid" src="{{ object.image.url }}" alt="{{ object.title }}">
                     </div>
+                    <p class="card-text">{{ object.entry_body }}</p>
+                    <p class="card-text">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
+                    <p class="card-text">Created on: {{ object.created_on }}</p>
+                    <p class="card-text">Updated on: {{ object.updated_on }}</p>
                 </div>
-                <!-- Creating New Comments -->
-                <div class="col-md-4 card mb-4 mt-3">
-                    <div class="card-body">
-                        {% if user.is_authenticated %}
-                        <h3>Leave a comment:</h3>
-                        <p>Posting as: {{ user.username }}</p>
-                        <form id="commentForm" method="post" style="margin-top: 1.3em;">
-                            {{ comment_form | crispy }}
-                            {% csrf_token %}
-                            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                        </form>
-                        {% else %}
-                        <p>Log in to leave a comment</p>
-                        {% endif %}
+                <div class="card-dark text-center mt-1">
+                    {% if prev_card %}
+                    <a href="{% url 'project-card-view' project.pk prev_card.pk %}" class="btn btn-primary mr-2">Previous</a>
+                    {% endif %}
+                    {% if next_card %}
+                    <a href="{% url 'project-card-view' project.pk next_card.pk %}" class="btn btn-primary">Next</a>
+                    {% endif %}
+                </div>
+
+                <!-- Displaying count of comments -->
+                <div class="row">
+                    <div class="col-1 card-dark text-center mt-1">
+                        <strong>
+                            <i class="far fa-comments"></i> {{ comment_count }}
+                        </strong>
+                    </div>                    
+                </div>
+
+                <!-- Displaying Comments -->
+                <div class="row">
+                    <div class="col-md-7 card-subfocus mt-3 mb-3">
+                        <h3>Comments:</h3>
+                        <div class="card-body">
+                            {% for comment in comments %}
+                            <div class="p-2 comments">
+                                <p class="font-weight-bold">
+                                    {{ comment.author }}
+                                    <span class="font-weight-normal">
+                                        {{ comment.created_on }}
+                                    </span> wrote:
+                                </p>
+                                <div id="comment{{ comment.id }}">
+                                    {{ comment.body | linebreaks }}
+                                </div>
+                                {% if user.is_authenticated and comment.author == user %}
+                                <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
+                                {% endif %}
+                                {% if user.is_authenticated and comment.author == user or project.creator == user %}
+                                <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                                {% endif %}
+
+                            </div>
+                            <!-- Our for loop ends here -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Creating New Comments -->
+                    <div class="col-md-4 card-focus mb-3 mt-3">
+                        <div class="card-body">
+                            {% if user.is_authenticated %}
+                            <h3>Leave a comment:</h3>
+                            <p>Posting as: {{ user.username }}</p>
+                            <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                                {{ comment_form | crispy }}
+                                {% csrf_token %}
+                                <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                            </form>
+                            {% else %}
+                            <p>Log in to leave a comment</p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

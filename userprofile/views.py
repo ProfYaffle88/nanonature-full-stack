@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.views.generic import DetailView
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, FormView
 from django.contrib.auth.views import LoginView, FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -32,32 +33,35 @@ class UserProfileDetailView(DetailView):
         return context
 
 
-class CustomSignupView(FormView):
-    """
-    View for displaying custom signup form that updates User
-    """
-    template_name = 'signup.html'
-    form_class = SignupForm
-    success_url = 'userprofile:custom_profile'
+# class CustomSignupView(FormView):
+#     """
+#     View for displaying custom signup form that updates User
+#     """
+#     template_name = 'signup.html'
+#     form_class = SignupForm
+#     success_url = 'userprofile:custom_profile'
     
-    print("Success URL:", success_url)
+#     print("Success URL:", success_url)
     
-    def form_valid(self, form):        
-        user = form.save()
-        login(self.request, user)
-        return HttpResponseRedirect(self.success_url)
+#     def form_valid(self, form):        
+#         user = form.save()
+#         login(self.request, user)
+#         return HttpResponseRedirect(self.success_url)
 
 
-class CustomProfileView(LoginView):
+class CustomProfileView(FormView):
     """
     View for displaying custom signup form that updates UserProfile after User creation
     """
-    template_name = 'create_user_profile.html'
-    form_class = SignupForm
+    template_name = 'userprofile/create_user_profile.html'
+    form_class = UserProfileForm
+    success_url = '/'
 
     def form_valid(self, form):
-        user = form.save()
-        return HttpResponseRedirect(self.get_success_url())
+        user_profile = form.save(commit=False)
+        user_profile.user = self.request.user
+        user_profile.save()
+        return redirect(self.get_success_url())
 
 
 @login_required

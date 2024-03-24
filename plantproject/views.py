@@ -168,7 +168,7 @@ def comment_edit(request, project_pk, card_pk, comment_pk):
         An instance of :form:`plantproject.CommentForm`
     """
     if request.method == "POST":
-        card = get_object_or_404(PlantProjcetCard, pk=card_pk)
+        card = get_object_or_404(PlantProjectCard, pk=card_pk)
         comment = get_object_or_404(Comment, pk=comment_pk)
         comment_form = CommentForm(data=request.POST, instance=comment)
 
@@ -216,3 +216,5 @@ def delete_project(request, project_pk):
             return redirect('project-view', pk=project_pk)
     else:
         return render(request, 'error_page.html', {'message': 'You are not authorized to delete this project.'})
+
+
