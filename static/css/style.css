@@ -21,10 +21,11 @@
 
 a {
     text-decoration: none;
-    color: #1A4301;
+    color: #aad576;
 }
 
-input {
+input,
+textarea {
     color: #1A4301;
 }
 
@@ -62,7 +63,7 @@ img {
 }
 
 .brand-title {
-    background-color: #F6FFEB;
+    background-color: #1A4301;
     border-radius: 2rem;
     display: inline-block;
     padding: 0 15px;
@@ -103,11 +104,15 @@ img {
     max-width: 85%;
 }
 
+.card-form {
+    max-width: fit-content;
+}
+
 .card-dark {
     color: #F6FFEB;
     background-color: #1A4301;
     border-radius: 2rem;
-    padding: 16px;
+    padding: 2rem 2rem;
     margin: auto;
 
     /* max-width: 85%;
@@ -364,3 +369,46 @@ a:active {
 }
 
 /* Media Queries */
+@media (max-width: 769px) {
+
+    #id_about,
+    #id_entry_body {
+        width: 75%;
+    }
+
+    h1.dark-text {
+        font-size: larger;
+    }
+
+    .brand {
+        font-size: xx-large;
+    }
+
+    .login-status {
+        font-size: small;
+        margin-top: -14px;
+    }
+
+    .living-edge-top {
+        top: 65px;
+    }
+
+    .col-5 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    svg,
+    .timeline__middle,
+    .timeline__spacer { 
+        display: none;
+    }
+
+    .card-dark,
+    .card-focus,
+    .card-subfocus {
+        padding: 0.5rem 0.5rem;
+        border-radius: 1rem;
+    }
+}

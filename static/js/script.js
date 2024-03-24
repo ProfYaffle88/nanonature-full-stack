@@ -27,7 +27,7 @@ function drawBranch(p1x, p1y, p2x, p2y, counter) {
 
 function drawBranchAndCalculateCoordinates(counter) {
     // Get the coordinates of the end-point (circle au)
-    var auX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.95 : 0.05);// Adjust as needed
+    var auX = parseFloat(document.getElementById("card-pos-" + counter).clientWidth) * (counter % 2 === 0 ? 0.95 : 0.03);// Adjust as needed
     var auY = parseFloat(document.getElementById("card-pos-" + counter).clientHeight) * 0.5; // Adjust as needed
 
     // Get the coordinates of the start-point (circle sl)

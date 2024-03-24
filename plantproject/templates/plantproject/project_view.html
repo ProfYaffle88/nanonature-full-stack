@@ -9,7 +9,7 @@
 
                 <div class="row">
                     <!-- Project Detail Card -->                    
-                    <div class="card-focus mt-3 mb-5">
+                    <div class="card-dark mt-3 mb-5">
                         <h2 class="card-title">{{ project.title }}</h2>
                         <p class="creator">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
                         <!-- If no image included, use default -->
@@ -36,7 +36,7 @@
                 {% for card in project_cards %}
                 <div class="row">
                     <!-- Display Project Entries -->                    
-                    <div class="card-subfocus mb-3">
+                    <div class="card-focus mb-3">
                         <a href="{% url 'project-card-view' project_pk=project.pk card_pk=card.pk %}" class="project-card-link">
                             <h3 class="card-title">{{ card.title }}</h3>                        
                         </a>
