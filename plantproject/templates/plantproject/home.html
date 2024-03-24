@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load custom_template_tags %}
 
 {% block content %}
 
@@ -28,7 +28,7 @@
                     {% if "placeholder" in project.image.url %}
                     <img class="card-img-top" src="{% static 'images/default.png' %}" alt="placeholder image">
                     {% else %}
-                    <img class="card-img-top" src="{{ project.image.url }}" alt="{{ project.title }}">
+                    <img class="card-img-top" src="{{ project.image.url | cloudinary_transform }}" alt="{{ project.title }}">
                     {% endif %}
                     <a href="{% url 'project-view' project.pk %}" class="project-link">
                         <h2 class="card-title">{{ project.title }}</h2>
