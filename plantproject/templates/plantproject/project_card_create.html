@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid card-body dark-text mt-5 mb-5 p-3" style="width: auto;">
+<div class="container-fluid card-main card-form dark-text mt-5 mb-5 p-3" style="width: auto;">
     <h1>Create a New Entry for the "{{ project.title }}" Project</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
