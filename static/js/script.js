@@ -39,21 +39,21 @@ function drawBranchAndCalculateCoordinates(counter) {
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
+function animateWaves() {
     const tweentop = KUTE.fromTo(
         '#wave-top-1',
         { path: '#wave-top-1' },
         { path: '#wave-top-2' },
-        { repeat: Infinity, duration: 1000, yoyo: true }
+        { repeat: 300, duration: 1000, yoyo: true }
     ).start();
 
     const tweenbottom = KUTE.fromTo(
         '#wave-bottom-1',
         { path: '#wave-bottom-1' },
         { path: '#wave-bottom-2' },
-        { repeat: Infinity, duration: 1000, yoyo: true }
+        { repeat: 300, duration: 1000, yoyo: true }
     ).start();
-});
+};
 
 function confirmDelete() {
     if (confirm('Are you sure you want to delete this project?')) {
@@ -61,8 +61,7 @@ function confirmDelete() {
     }
 };
 
-
-// // Example usage:
-// window.onload = function() {
-//     drawBranch(175, 50, 100, 100); // Example coordinates, replace with your own
-// };
+document.addEventListener('DOMContentLoaded', function() {
+    animateWaves();
+    requestAnimationFrame(drawBranchAndCalculateCoordinates);
+});
