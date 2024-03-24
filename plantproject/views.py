@@ -234,7 +234,7 @@ class EditProjectView(UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('project-detail', kwargs={'project_pk': self.object.pk})
+        return reverse_lazy('project-view', kwargs={'pk': self.object.pk})
 
 
 def delete_project_card(request, project_pk, card_pk):
