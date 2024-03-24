@@ -120,8 +120,6 @@ img {
     min-width: 65%; */
     max-width: 85%;
     height: 100%;
-
-    text-wrap: wrap;
 }
 
 /* .card-dark img {
