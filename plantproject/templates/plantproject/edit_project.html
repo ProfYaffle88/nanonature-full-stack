@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid card-main card-form dark-text mt-5 mb-5 p-3" style="width: auto;">
+   <div class="row">
+      <div class="col-8 offset-2 text-center mt-5">
+         <h2>Edit Project</h2>
+         <hr>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col mt-3 text-center">
+         <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button class="btn btn-success right mb-2" type="submit" >Submit  <i class="fa fa-edit"></i></button>
+         </form>
+      </div>
+   </div>
+</div>
+{%endblock%}
