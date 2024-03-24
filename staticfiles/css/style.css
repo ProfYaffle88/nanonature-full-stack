@@ -11,6 +11,7 @@
 
 * {
     font-family: "Comfortaa", sans-serif;
+    color: #F6FFEB;
 }
 
 .container {
@@ -18,20 +19,18 @@
     width: 80%
 }
 
-body {
-    background-color: #143601; /* Sort */
-    color: #F6FFEB;
-}
-
 a {
     text-decoration: none;
-    color: #73A942;
+    color: #aad576;
+}
+
+input,
+textarea {
+    color: #1A4301;
 }
 
 img {
-    max-height: 400px;
-    max-width: 400px;
-    background-color: #245501;    
+    margin: auto;
 }
 
 .modal-body, .modal-title, body .alert, .login-status, .dark-text {
@@ -45,6 +44,12 @@ img {
     color: #F6FFEB;
 }
 
+.nav-link,
+.navbar-nav,
+.navbar-toggler {
+    color: #F6FFEB;
+}
+
 .login-status {
     margin-right: 52px;
     margin-top: -28px;
@@ -54,7 +59,6 @@ img {
     font-family: "Rubik Moonrocks", sans-serif;
     font-size: 3.6rem;
     font-weight: 400;
-    color: #aad576;
     padding-left: 1rem;
 }
 
@@ -64,7 +68,7 @@ img {
 }
 
 .brand-title {
-    background-color: #F6FFEB;
+    background-color: #1A4301;
     border-radius: 2rem;
     display: inline-block;
     padding: 0 15px;
@@ -97,6 +101,11 @@ img {
     background-color: #aad576;
 }
 
+.card-text {
+    max-width: 85%;
+    text-wrap: wrap;
+}
+
 .card-main {
     background-color: #aad576;
     border-radius: 7%;
@@ -105,19 +114,17 @@ img {
     max-width: 85%;
 }
 
+.card-form {
+    max-width: fit-content;
+}
+
 .card-dark {
     color: #F6FFEB;
     background-color: #1A4301;
     border-radius: 2rem;
-    padding: 16px;
-
-    /* max-width: 85%;
-    max-height: 100%;
-    min-width: 65%; */
-    max-width: 85%;
-    height: 100%;
-
-    text-wrap: wrap;
+    padding: 2rem 2rem;
+    margin: auto;
+    max-width: fit-content;
 }
 
 /* .card-dark img {
@@ -128,14 +135,19 @@ img {
     color: #1A4301;
     background-color: #538D22;
     border-radius: 2rem;
-    max-width: 85%;
+    max-width: fit-content;
+    text-wrap: wrap;
+    padding: 2rem 2rem;
+    margin: auto;
 }
 
 .card-subfocus {
     color: #F6FFEB;
-    background-color: #538D22;
+    background-color: #73A942;
     border-radius: 2rem;
-    max-width: 80%;
+    max-width: fit-content;
+    padding: 2rem 2rem;
+    margin: auto;
 }
 
 .signup-box {
@@ -294,13 +306,17 @@ svg {
     color: #143601;
 }
 
+.btn-primary,
 .btn-submit,
 .btn-signup,
 .btn-edit {
     background-color: #538D22;
     color: #F6FFEB;
+    border-color: transparent;
 }
 
+.btn-primary:hover,
+.btn-primary:active,
 .btn-submit:hover,
 .btn-submit:active,
 .btn-edit:hover,
@@ -309,6 +325,7 @@ svg {
 .btn-signup:active {
     background-color: #143601;
     color: #F6FFEB;
+    border-color: #F6FFEB;
 }
 
 .link {
@@ -356,3 +373,53 @@ a:active {
 }
 
 /* Media Queries */
+@media (max-width: 769px) {
+
+    #id_about,
+    #id_entry_body {
+        width: 75%;
+    }
+
+    h1.dark-text {
+        font-size: larger;
+    }
+
+    .brand {
+        font-size: xx-large;
+    }
+
+    .login-status {
+        font-size: small;
+        margin-top: -14px;
+    }
+
+    .living-edge-top {
+        top: 65px;
+    }
+
+    .col-5 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    svg,
+    .timeline__middle,
+    .timeline__spacer { 
+        display: none;
+    }
+
+    .card-dark,
+    .card-focus,
+    .card-subfocus {
+        padding: 0.5rem 0.5rem;
+        border-radius: 1rem;
+    }
+}
+
+@media (min-width: 2000px) {
+    .main-bg {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+}
