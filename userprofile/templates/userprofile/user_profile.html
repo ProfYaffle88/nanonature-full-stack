@@ -6,27 +6,33 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 mt-3 justify-content-center">
-            <div class="card-main mb-3">
-                <div class="card-focus">
-                    <h2 class="card-title">{{ object.user }}</h2>
-                    {% if "placeholder" in project.image.url %}
-                    <img class="img-fluid" src="{% static 'images/default-profile.webp' %}" 
-                        alt="placeholder profile image">
-                    {% else %}
-                    <img class="img-fluid" src=" {{ object.image.url }}" alt="{{ object.user }}">
-                    {% endif %}
-                    <p class="card-text">{{ object.bio }}</p>
-                    {% if user_is_owner %}
-                    <form method="post" action="{% url 'userprofile:delete-user' %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete Account</button>
-                    </form>
-                    {% endif %}
-                    <hr>
-                    <!-- Display User Projects -->
-                    {% for project in projects %}
+            <div class="card-main mb-4">
+
+                <div class="row">
+                    <div class="card-focus mt-3 mb-5">
+                        <h2 class="card-title brand">{{ object.user }}</h2>
+                        {% if "placeholder" in project.image.url %}
+                        <img class="img-fluid" src="{% static 'images/default-profile.webp' %}" 
+                            alt="placeholder profile image">
+                        {% else %}
+                        <img class="img-fluid" src=" {{ object.image.url }}" alt="{{ object.user }}">
+                        {% endif %}
+                        <p class="card-text">{{ object.bio }}</p>
+                        {% if user_is_owner %}
+                        <form method="post" action="{% url 'userprofile:delete-user' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete Account</button>
+                        </form>
+                        {% endif %}
+                        <hr>
+                    </div>
+                </div>
+
+                <!-- Display User Projects -->
+                {% for project in projects %}
+                <div class="row">
                     <!-- Display entry details -->                    
-                    <div class="card-dark">
+                    <div class="card-dark mb-3">
                         <a href="{% url 'project-view' pk=project.pk %}" class="project-card-link">
                             <h3 class="card-title">{{ project.title }}</h3>                        
                         </a>
@@ -37,10 +43,14 @@
                         <img class="img-fluid" src=" {{ project.image.url }}" alt="{{ project.title }}">
                         {% endif %}
                         <p class="card-text">{{ project.about }}</p>
-                        <p class="card-text text-muted">Created on: {{ project.created_on }}</p>
-                        <p class="card-text text-muted">Updated on: {{ project.updated_on }}</p>
+                        <hr>
+                        <p class="card-text">Created on: {{ project.created_on }}</p>
+                        <p class="card-text">Updated on: {{ project.updated_on }}</p>
                     </div>                    
                     {% endfor %}
                 </div>
-            </div> 
+            </div>
+        </div>
+    </div>
+</div> 
 {% endblock %}
