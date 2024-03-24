@@ -10,7 +10,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['user', 'bio', 'image']
+        fields = ['bio', 'image']
 
 class SignupForm(UserCreationForm):
     # Fields from the User model
