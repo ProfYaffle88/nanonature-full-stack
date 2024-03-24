@@ -25,6 +25,10 @@
                         <p class="card-text">Updated on: {{ project.updated_on }}</p>
                         {% if user.is_authenticated and user == project.creator %}
                         <a href="{% url 'project-card-create' project_pk=project.pk %}" class="btn btn-primary">Make a new entry in this Project</a>
+                        <form id="edit-form" action="{% url 'edit-project' project.pk %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-edit" type="button" onclick="navigateToURL('edit-project')">Edit Project</button>
+                        </form>
                         <form id="delete-form" action="{% url 'delete-project' project.pk %}" method="post">
                             {% csrf_token %}
                             <button class="btn-delete" type="button" onclick="confirmDelete()">Delete Project</button>

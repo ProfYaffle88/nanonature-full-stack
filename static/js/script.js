@@ -1,3 +1,7 @@
+function navigateToURL(url) {
+    window.location.href = url;
+}
+
 function drawBranch(p1x, p1y, p2x, p2y, counter) {
     // mid-point of line:
     var mpx = (p2x + p1x) * 0.5;

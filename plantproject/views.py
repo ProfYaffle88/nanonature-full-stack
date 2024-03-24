@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -205,16 +206,48 @@ def comment_delete(request, project_pk, card_pk, comment_pk):
     return HttpResponseRedirect(reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk}))
 
 
-@login_required
 def delete_project(request, project_pk):
     project = get_object_or_404(PlantProject, pk=project_pk)
-    if request.user == project.creator:
-        if request.method == 'POST':
-            project.delete()
-            return redirect('userprofile:user-profile', pk=request.user.pk)
-        else:
-            return redirect('project-view', pk=project_pk)
-    else:
-        return render(request, 'error_page.html', {'message': 'You are not authorized to delete this project.'})
+    project.delete()
+    return HttpResponseRedirect(reverse('home'))
+
+    # if request.user == project.creator:
+    #     if request.method == 'POST':
+    #         project.delete()
+    #         return redirect('userprofile:user-profile', pk=request.user.pk)
+    #     else:
+    #         return redirect('project-view', pk=project_pk)
+    # else:
+    #     return render(request, 'error_page.html', {'message': 'You are not authorized to delete this project.'})
 
 
+class EditProjectView(UpdateView):
+    """
+    Edit an existing project
+    """
+    model = PlantProject
+    fields = ['title', 'image', 'about']
+    pk_url_kwarg = 'project_pk'
+    template_name = 'plantproject/edit_project.html'
+    
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('project-detail', kwargs={'project_pk': self.object.pk})
+
+
+def delete_project_card(request, project_pk, card_pk):
+    project = get_object_or_404(PlantProject, pk=project_pk)
+    card = get_object_or_404(PlantProjectCard, pk=card_pk)
+    card.delete()
+    return HttpResponseRedirect(reverse('project-view', kwargs={'project_pk': project_pk}))
+
+
+class edit_project_card(UpdateView):
+    """
+    Edit an exisiting entry in a project
+    """
+    model = PlantProjectCard
+    template_name ='edit_project_card.html'
+    form_class = ProjectCardForm

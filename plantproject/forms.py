@@ -7,11 +7,23 @@ class ProjectForm(forms.ModelForm):
         model = PlantProject
         fields = ('title', 'image', 'about',)
 
+    def __init__(self, *args, **kwargs):
+        super(ProjectForm, self).__init__(*args, **kwargs)
+        self.fields[
+            'image'
+            ].label = "You can upload an image here"
+
 
 class ProjectCardForm(forms.ModelForm):
     class Meta:
         model = PlantProjectCard
         fields = ('title', 'image', 'entry_body',)
+
+    def __init__(self, *args, **kwargs):
+        super(ProjectCardForm, self).__init__(*args, **kwargs)
+        self.fields[
+            'image'
+            ].label = "You can upload an image here"
 
 
 class CommentForm(forms.ModelForm):
