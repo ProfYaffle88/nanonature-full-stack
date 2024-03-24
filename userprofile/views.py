@@ -86,5 +86,7 @@ def delete_user(request):
         request.user.delete()
         logout(request)
         return redirect('/')
+    else:
+        return redirect('user-profile', pk=user.pk)
 
     return render(request, 'delete_user.html')

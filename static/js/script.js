@@ -65,6 +65,12 @@ function confirmDelete() {
     }
 };
 
+function confirmUserDelete() {
+    if (confirm('Are you sure you want to delete your profile? This cannot be undone!')) {
+        document.getElementById('delete-user').submit();
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     animateWaves();
     requestAnimationFrame(drawBranchAndCalculateCoordinates);
