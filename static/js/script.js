@@ -60,7 +60,7 @@ function animateWaves() {
 };
 
 function confirmDelete() {
-    if (confirm('Are you sure you want to delete this project?')) {
+    if (confirm('Are you sure you want to delete this project? This cannot be undone!')) {
         document.getElementById('delete-form').submit();
     }
 };
@@ -68,6 +68,12 @@ function confirmDelete() {
 function confirmUserDelete() {
     if (confirm('Are you sure you want to delete your profile? This cannot be undone!')) {
         document.getElementById('delete-user').submit();
+    }
+};
+
+function confirmCardDelete() {
+    if (confirm('Are you sure you want to delete ythis project entry? This cannot be undone!')) {
+        document.getElementById('delete-card').submit();
     }
 };
 
