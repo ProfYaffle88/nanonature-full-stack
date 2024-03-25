@@ -5,6 +5,8 @@
 <img src="###" width="600" height="100%">
 </p>
 
+[AmIResponsive](www.amiresponsive.com) is not happy with my animated content - Work Around In Progress
+
 A full-stack project built using the Django framework with; Python, JavaScript, HTML and CSS. I aim to create a functional blog website for terrarium/bonsai/plant enthusiasts.
 
 # About
@@ -191,6 +193,8 @@ Wireframes for each device are linked here:
 - Account Management Page
 - Notifications
 
+Unfortunately, I have not been able to complete as many of the planned features as I had intended. Largely due to some significant bugs and suboptimal prioritisation. I plan to continue to update the project beyond the Code Institute course.
+
 #
 # Structure
 
@@ -268,6 +272,7 @@ Color palette from [Coolors](https://coolors.co/###)
 
 Both available through [GoogleFonts](https://fonts.google.com/)
 - **Brand font:** Rubik MoonRocks, sans-serif - Used for Brand and certain impact titles
+  - Seemingly quite large. In future, be aware of potential impact of font choice.
 - **Site Font:** Comfortaa, sans-serif - main font
 
 # Technologies Used
@@ -322,7 +327,7 @@ Both available through [GoogleFonts](https://fonts.google.com/)
 
 [SVGOMG](https://svgomg.net/) - to optimise SVG curves
 
-[Kute.js](https://thednp.github.io/kute.js/) - to animate the transition between two SVG paths
+[Kute.js](https://thednp.github.io/kute.js/) - to animate the transition between two SVG curve paths
 
 <hr>
 
@@ -333,18 +338,104 @@ Both available through [GoogleFonts](https://fonts.google.com/)
 
 ### **Testing Users Stories form (UX) Section**
 
-...
+**Epic: Accounts**
+- As a site user I can create an account and log in, so that I can post my own projects to the site.
+- As a site user I have a user profile where I can provide more information, so that other users can learn more about me and I can learn more about other users.
+- As a site user I can register for this site using a variety of pre-existing social media, enhancing cross-site posting . . . and so that I don't have to create yet another personal account for a website.
+
+This was tested by creating an account, logging in and out, viewing the created user profile page
+
+Create Account:
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+
+Login:
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+
+Logout:
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+
+User Profile:
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+
+**Epic: Content Management**
+- As a site user I can create, edit and delete my own posts, so that I have control over the content I upload.
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+
+- As a site user I can view other users projects and leave comments and likes associated with them, so that there is an interactive community.
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+
+- As a site user I can view an About page, so that I can learn about the site's features and see information about the creator/owners.
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+
+**Epic: Social & Community Features**
+- As a site user I can follow another user, so that I receive notifications when they post content
+- As a site user I can search/filter content from other users by tag and add tags to my own content, so that I can better find specific content I am looking for and increase the visibility of my own content.
+- As a site user I can see a visual notification if I receive a comment/reply so that I can reply and easily participate in community discussions
+
+Unfortunately, Social & Community Features have been pushed to a future iteration in order to focus on producing a minimum viable product.
+
 
 ## Bugs and Issues
-- 
+- **Images breaking in dev DB**
+  - Fixed by using Pillow, I'm fairly sure it had to do with how an image submitted to a form was passed to Cloudinary/DB. Possibly due to my attempts to implement image compression at the Cloudinary end.
 
-- 
+- **Project cards getting smaller with each iteration of For Loop**
+  - Nesting issue interacting with styling issue. Resolved with tweaks to HTML and logic.
 
-- 
+- **Sign Up Form Refuses to create two entities**
+  - Originally planned to have for extending sign in form, to create user profile at the same time as user.
+  - Unable to easily modify certain default Django allauth behaviour. Easier approach was to redirect sign up form to "part 2" user profile form.
+  - Much annoyance with context and pk's.
+  - Fixed but required 2nd fix as result: Logic to check if user signing in via login has already created a user profile and if so to skip form (prevents returning users being directed to form to update user profile on every login).
 
-- 
+- **Use of PK**
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+  - Use of PK's to build urls seemed simple at first.
+  - Encountered issue with naming clarity where difficult to identify offending context and how best to make available to views.
+  - Required namespace to be assigned to the userprofile app. Further confusion cost time.
 
-- 
+- **JavaScript Optimisation**
+<p align="center">
+<img src="###" width="900" height="100%">
+</p>
+  - Initally had larger, more complex (more interesting) SVG curves for header and footer.
+  - Noted to be extremely resource intensive.
+  - <p align="center">
+    <img src="###" width="900" height="100%">
+    </p>
+  - Reduced delay to page with less complex curve and SVGOMG optimisation. Better compartmentalising of script would also be desirable but less impactful than reducing image size.
+  - <p align="center">
+    <img src="###" width="900" height="100%">
+    </p>
+
+- **Dyanmic Javascript Timeline Branches**
+  - Much less resource intense than animated header/footer elements.
+  - Soime delay arises frrom using a script tag inside of the for loop to dynamically create start/end/bezier points for each iteration of the loop.
+  - Pixel tweaking of branches is difficult as current formula very much brute force. A more elegant formula would result in better branches but not likely to improve performance while script tags iterated.
+  - I would be very keen to improve this feature further; more elaborate lines/sprial, 'leaves', animated painting of lines.
+  - Originally planned to replicate timeline style in User Profile View (to display a user's projects) and in Project View (to display a project's entries). Due to time contraints, the single column responive format is still currently in use on these pages.
+
+- **Deployment Server 500**
+  - After an initally very positive deployment, it was noted that a certain URL pattern/View was not displaying: Project Card View.
+  - I initailly suspected more context/pk/path issues but was unable to loacte the problem.
+  - I was only able to continue after assistance from Coading Coach Martin. Martin identified a migration issue that has resulted in 2 databases. 
+  - This likely occured when I made a small change to the comment model in order to get comments to display. I made the migration and migrated, but it did not seem to replicate to the server.
 
 # Deployment
 This project was deployed using Github and Heroku.
