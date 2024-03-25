@@ -24,9 +24,9 @@
                             {% csrf_token %}
                             <button class="btn-edit" type="button" onclick="navigateToURL('edit-project-card')">Edit Project Card</button>
                         </form>
-                        <form id="delete-card-form" action="{% url 'delete-project' project.pk %}" method="post">
+                        <form id="delete-card-form" action="{% url 'delete-project-card' project_pk=project.pk card_pk=object.pk %}" method="post">
                             {% csrf_token %}
-                            <button class="btn-delete" type="button" onclick="confirmDelete()">Delete Project Card</button>
+                            <button class="btn-delete" type="button" onclick="confirmCardDelete()">Delete Project Card</button>
                         </form>
                         {% endif %}
                     </div>
