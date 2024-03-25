@@ -18,7 +18,20 @@
                     <p class="card-text">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
                     <p class="card-text">Created on: {{ object.created_on }}</p>
                     <p class="card-text">Updated on: {{ object.updated_on }}</p>
+                    <div>
+                        {% if user.is_authenticated and user == project.creator %}
+                        <form id="edit-card-form" action="{% url 'edit-project-card' project_pk=project.pk card_pk=object.pk %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-edit" type="button" onclick="navigateToURL('edit-project-card')">Edit Project Card</button>
+                        </form>
+                        <form id="delete-card-form" action="{% url 'delete-project' project.pk %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn-delete" type="button" onclick="confirmDelete()">Delete Project Card</button>
+                        </form>
+                        {% endif %}
+                    </div>
                 </div>
+
                 <div class="card-dark text-center mt-1">
                     {% if prev_card %}
                     <a href="{% url 'project-card-view' project.pk prev_card.pk %}" class="btn btn-primary mr-2">Previous</a>

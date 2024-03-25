@@ -242,10 +242,19 @@ def delete_project_card(request, project_pk, card_pk):
     return HttpResponseRedirect(reverse('project-view', kwargs={'project_pk': project_pk}))
 
 
-class edit_project_card(UpdateView):
+class EditProjectCardView(UpdateView):
     """
     Edit an exisiting entry in a project
     """
     model = PlantProjectCard
-    template_name ='edit_project_card.html'
-    form_class = ProjectCardForm
+    fields = ['title', 'image', 'entry_body']
+    pk_url_kwarg = ('project_pk', 'card_pk')
+    template_name = 'plantproject/edit_project_card.html'
+    
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        project_pk = self.kwargs['project_pk']
+        card_pk = self.kwargs['card_pk']
+        return reverse_lazy('project-view', kwargs={'card_pk': self.object.pk, 'project_pk': project_pk})
