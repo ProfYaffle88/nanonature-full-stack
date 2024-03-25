@@ -8,11 +8,15 @@
         <div class="col-md-8 offset-md-2">
             <div class="card card-main mb-4">
                 <!-- Entry Detail -->
-                <div class="card-focus">
+                <div class="card-dark">
                     <h3 class="card-title">Project: <a href="{% url 'project-view' pk=object.project.pk %}">{{ object.project.title }}</a></h3>
                     <h2 class="card-title">{{ object.title }}</h2>
                     <div class="row justify-content-center">
+                        {% if "placeholder" in project.image.url %}
+                        <img class="img-fluid" src="{% static 'images/default.png' %}" alt="placeholder image">
+                        {% else %}
                         <img class="img-fluid" src="{{ object.image.url }}" alt="{{ object.title }}">
+                        {% endif %}
                     </div>
                     <p class="card-text">{{ object.entry_body }}</p>
                     <p class="card-text">Creator: <a href="{% url 'userprofile:user-profile' project.creator.pk %}">{{ project.creator }}</a></p>
@@ -32,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="card-dark text-center mt-1">
+                <div class="card-dark text-center mt-1" style="min-width: 0;">
                     {% if prev_card %}
                     <a href="{% url 'project-card-view' project.pk prev_card.pk %}" class="btn btn-primary mr-2">Previous</a>
                     {% endif %}
@@ -43,7 +47,7 @@
 
                 <!-- Displaying count of comments -->
                 <div class="row">
-                    <div class="col-1 card-dark text-center mt-1">
+                    <div class="col-1 card-dark text-center mt-1" style="min-width: 0;">
                         <strong>
                             <i class="far fa-comments"></i> {{ comment_count }}
                         </strong>
