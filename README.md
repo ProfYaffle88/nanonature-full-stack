@@ -224,23 +224,22 @@ The website is made from two apps:
 
 ### **Project Model**
 <p align="center">
-<img src="doc-assets/diagrams/plantproject-model.png" width="600" height="100%">
+<img src="doc-assets/diagrams/model-plantproject.PNG" width="600" height="100%">
 </p>
 
 ### **Project Card Model**
 <p align="center">
-<img src="doc-assets/diagrams/plantprojectcard-model.png" width="600" height="100%">
+<img src="doc-assets/diagrams/model-plantprojectcard.PNG" width="600" height="100%">
 </p>
 
 ### **User Profile Model**
 <p align="center">
-<img src="doc-assets/diagrams/userprofile-model.png" width="600" height="100%">
+<img src="doc-assets/diagrams/model-userprofile.PNG" width="600" height="100%">
 </p>
 
 ### **Comment Model**
-
 <p align="center">
-<img src="doc-assets/diagrams/comment-model.png" width="600" height="100%">
+<img src="doc-assets/diagrams/model-comment.PNG" width="600" height="100%">
 </p>
 
 
@@ -329,6 +328,12 @@ Both available through [GoogleFonts](https://fonts.google.com/)
 
 [Kute.js](https://thednp.github.io/kute.js/) - to animate the transition between two SVG curve paths
 
+[JS-Lint](https://www.jslint.com/) - was used to validate JavaScript
+
+[CI-Python-Linter](https://pep8ci.herokuapp.com/)
+
+[YouTube](https://youtube.com) - For guidance and inspiration.
+
 <hr>
 
 # Testing
@@ -347,38 +352,50 @@ This was tested by creating an account, logging in and out, viewing the created 
 
 Create Account:
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/screenshots/register1.PNG" width="900" height="100%">
+</p>
+
+<p align="center">
+<img src="doc-assets/screenshots/register2.PNG" width="900" height="100%">
 </p>
 
 Login:
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/screenshots/signin.PNG" width="900" height="100%">
 </p>
 
 Logout:
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/screenshots/signout.PNG" width="600" height="100%">
 </p>
 
 User Profile:
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/screenshots/profile.PNG" width="900" height="100%">
 </p>
+
+Django Social login is yet to be implemented.
 
 **Epic: Content Management**
 - As a site user I can create, edit and delete my own posts, so that I have control over the content I upload.
+
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/screenshots/project-form.PNG" width="900" height="100%">
+</p>
+
+<p align="center">
+<img src="doc-assets/screenshots/project-crud.PNG" width="900" height="100%">
 </p>
 
 - As a site user I can view other users projects and leave comments and likes associated with them, so that there is an interactive community.
+
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/screenshots/comment-crud1.PNG" width="900" height="100%">
 </p>
 
 - As a site user I can view an About page, so that I can learn about the site's features and see information about the creator/owners.
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/screenshots/comments.PNG" width="900" height="100%">
 </p>
 
 **Epic: Social & Community Features**
@@ -404,7 +421,7 @@ Unfortunately, Social & Community Features have been pushed to a future iteratio
 
 - **Use of PK**
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/diagrams/urlspatterns.PNG" width="900" height="100%">
 </p>
   - Use of PK's to build urls seemed simple at first.
   - Encountered issue with naming clarity where difficult to identify offending context and how best to make available to views.
@@ -412,21 +429,24 @@ Unfortunately, Social & Community Features have been pushed to a future iteratio
 
 - **JavaScript Optimisation**
 <p align="center">
-<img src="###" width="900" height="100%">
+<img src="doc-assets/wireframes/wave-haikei-doc.svg" width="900" height="100%">
 </p>
   - Initally had larger, more complex (more interesting) SVG curves for header and footer.
   - Noted to be extremely resource intensive.
   - <p align="center">
-    <img src="###" width="900" height="100%">
+    <img src="doc-assets/testing/lighthouse-performance-low.PNG" width="900" height="100%">
     </p>
   - Reduced delay to page with less complex curve and SVGOMG optimisation. Better compartmentalising of script would also be desirable but less impactful than reducing image size.
   - <p align="center">
-    <img src="###" width="900" height="100%">
+    <img src="doc-assets/testing/smaller svgs performance.PNG" width="900" height="100%">
     </p>
 
 - **Dyanmic Javascript Timeline Branches**
+<p align="center">
+<img src="doc-assets/screenshots/hand-drawn-branch.PNG" width="900" height="100%">
+</p>
   - Much less resource intense than animated header/footer elements.
-  - Soime delay arises frrom using a script tag inside of the for loop to dynamically create start/end/bezier points for each iteration of the loop.
+  - Some delay arises from using a script tag inside of the for loop to dynamically create start/end/bezier points for each iteration of the loop.
   - Pixel tweaking of branches is difficult as current formula very much brute force. A more elegant formula would result in better branches but not likely to improve performance while script tags iterated.
   - I would be very keen to improve this feature further; more elaborate lines/sprial, 'leaves', animated painting of lines.
   - Originally planned to replicate timeline style in User Profile View (to display a user's projects) and in Project View (to display a project's entries). Due to time contraints, the single column responive format is still currently in use on these pages.
@@ -437,23 +457,90 @@ Unfortunately, Social & Community Features have been pushed to a future iteratio
   - I was only able to continue after assistance from Coading Coach Martin. Martin identified a migration issue that has resulted in 2 databases. 
   - This likely occured when I made a small change to the comment model in order to get comments to display. I made the migration and migrated, but it did not seem to replicate to the server.
 
-# Deployment
-This project was deployed using Github and Heroku.
 
+## Validation and Testing
+
+**HTML Validation - [W3-Validator](https://validator.w3.org/nu/#textarea)**
+Unresolvable error due to dynamically constructed path:
+<p align="center">
+<img src="doc-assets/testing/html-validator-missing-path-attr.PNG" width="900" height="100%">
+</p>
+On pages without timeline branches:
+<p align="center">
+<img src="doc-assets/testing/html-validator-clear.PNG" width="900" height="100%">
+</p>
+
+**CSS Validation - [W3-Jigsaw](https://jigsaw.w3.org/css-validator/)**
+<p align="center">
+<img src="doc-assets/testing/jigsaw-css-validation.PNG" width="900" height="100%">
+</p>
+
+**JS Validation - [JS-Lint](https://www.jslint.com/)**
+Warnings before clean-up:
+<p align="center">
+<img src="doc-assets/testing/jslint-warnings.PNG" width="900" height="100%">
+</p>
+After cleaning up quotation mark choice errors and some others, only left with these (after 'long lines' excluded)
+<p align="center">
+<img src="doc-assets/testing/jslint-post-cleanup.PNG" width="900" height="100%">
+</p>
+
+**Python Linting - [CI-Python-Linter](https://pep8ci.herokuapp.com/)**
+<p align="center">
+<img src="doc-assets/testing/pythonlint1.PNG" width="900" height="100%">
+</p>
+Most numerous error is 'long lines':
+<p align="center">
+<img src="doc-assets/testing/pythonlint2.PNG" width="900" height="100%">
+</p>
+
+**Lighthouse Testing**
+<p align="center">
+<img src="doc-assets/testing/lighthouse-landing.PNG" width="900" height="100%">
+</p>
+<p align="center">
+<img src="doc-assets/testing/lighthouse-performance-high.PNG" width="500" height="100%">
+</p>
+<p align="center">
+<img src="doc-assets/testing/lighthouse-performance-low.PNG" width="500" height="100%">
+</p>
+After optimising the SVGs, the next most costly operation is the content painting. I attempted to use the cache from Heroku's backend and I tried to use PhotoPea to prepare my images (most are .webp format of less than 150kb). A future focus will be the image handling processes.
+
+
+# Deployment
+This project was deployed using Github and Heroku. It can be viewed [here](https://nanonature-f724af5165b5.herokuapp.com/).
+
+## Github 
+To create a new repository I took the following steps:
+
+- Logged into Github.
+- Clicked over to the ‘repositories’ section.
+- Clicked the green ‘new’ button. This takes you to the create new repository page.
+- Once there under ‘repository template’ I chose the code institute template from the dropdown menu.
+- I input a repository name then clicked the green ‘create repository button’ at the bottom of the page.
+- Once created I opened the new repository and clicked the green ‘Gitpod’ button to create a workspace in Gitpod for editing.
+
+## Django and Heroku 
+- To get the Django framework installed and set up I followed the Code institutes [Django Blog cheatsheet](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
 
 
 # Credits
 
-- [Summernote](https://github.com/summernote/django-summernote) - I learn how to change summernote toolbar
 - [Code Institute](https://codeinstitute.net/ie/) - 'I think therefore I blog' project helped me with recipe details page and pagination
 - [Django documentation](https://docs.djangoproject.com/en/4.0/topics/pagination/) - also helped me with pagination and other problems
-- [Search bar](https://www.teckiy.com/blog/implementation-of-search-bar-using-django-in-any-website-2936659075/) - this site is used to help me build Search bar
-- [Taste](https://www.taste.com.au/) - all recipes were taken from Taste
-
+- Dozens Youtibe tutorials, particularly:
+  - [Build a Curvaceous Homepage // Wavy Background Tutorial with SVG & CSS by Fireship](https://www.youtube.com/watch?v=lPJVi797Uy0)
+  - [How to Create a Vertical Timeline - HTML & CSS Tutorial by dcode](https://www.youtube.com/watch?v=AIDiMA_C3sg)
+  - CodeBootCamp, NetNinja and many more.
+- [Stack Overflow](https://stackoverflow.com/)
+- [CharGPT](https://chat.openai.com/)
+- [Code Institute](https://codeinstitute.net/) - For the clear walkthroughs and the previous high quality projects for inspiration and adaptation.
 
 ## Media
 - All images are my own.
 
-
 ## Acknowledgements
-- Thanks to my mentor 
+- Thanks to my mentor Ronan
+- Thanks to my Coach and moral support Martin
+- Thank you of course to Kevin for being Kevin
+- Thank you to Iris and all the CI community, I have thoroughly enjoyed myself!
