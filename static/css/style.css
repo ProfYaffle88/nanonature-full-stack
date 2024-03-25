@@ -59,6 +59,11 @@ img {
     margin-top: -28px;
 }
 
+#edit-form,
+#edit-card-form {
+    margin: 1rem;
+}
+
 .brand {
     font-family: "Rubik Moonrocks", sans-serif;
     font-size: 3.6rem;
@@ -129,11 +134,8 @@ img {
     padding: 2rem 2rem;
     margin: auto;
     max-width: fit-content;
+    min-width: 70%;
 }
-
-/* .card-dark img {
-    max-height: 50%;
-} */
 
 .card-focus {
     color: #1A4301;
@@ -314,7 +316,6 @@ svg {
 .btn-submit,
 .btn-signup,
 .btn-edit {
-    margin: 1rem;
     background-color: #538D22;
     color: #F6FFEB;
     border-color: transparent;
