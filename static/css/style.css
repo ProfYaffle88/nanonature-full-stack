@@ -33,6 +33,10 @@ img {
     margin: auto;
 }
 
+.btn {
+    margin: 1rem;
+}
+
 .modal-body, .modal-title, body .alert, .login-status, .dark-text {
     color: #143601;
     background-color: #aad576;
@@ -310,6 +314,7 @@ svg {
 .btn-submit,
 .btn-signup,
 .btn-edit {
+    margin: 1rem;
     background-color: #538D22;
     color: #F6FFEB;
     border-color: transparent;
@@ -350,6 +355,7 @@ a:active {
 }
 
 .btn-delete {
+    margin: 1rem;
     color: #F6FFEB;
     background: #863418;
 }
