@@ -238,8 +238,15 @@ class EditProjectView(UpdateView):
 def delete_project_card(request, project_pk, card_pk):
     project = get_object_or_404(PlantProject, pk=project_pk)
     card = get_object_or_404(PlantProjectCard, pk=card_pk)
-    card.delete()
-    return HttpResponseRedirect(reverse('project-view', kwargs={'project_pk': project_pk}))
+
+    if request.user == project.creator:
+        if request.method == 'POST':
+            card.delete()
+            return redirect('project-view', pk=project_pk)
+        else:
+            return redirect('project-card-view', project_pk=project_pk, card_pk=card_pk)
+    else:
+        return render(request, 'error_page.html', {'message': 'You are not authorized to delete this!'})
 
 
 class EditProjectCardView(UpdateView):
