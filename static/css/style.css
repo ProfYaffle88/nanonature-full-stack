@@ -112,7 +112,6 @@ img {
 
 .card-text {
     max-width: 85%;
-    text-wrap: wrap;
 }
 
 .card-main {
@@ -142,7 +141,6 @@ img {
     background-color: #538D22;
     border-radius: 2rem;
     max-width: fit-content;
-    text-wrap: wrap;
     padding: 2rem 2rem;
     margin: auto;
 }
