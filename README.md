@@ -57,10 +57,20 @@ Given the desire to appeal to as broad an audience as possible, UX/UI philosophy
 
 ## User Stories 
 
-**Epic: TITLE**
-- As a site Admin I can ### so that I can ###
-- As a site Admin I can ### so that I can ###
-- As a site Admin I can ### so that I can ###
+**Epic: Accounts**
+- As a site user I can create an account and log in, so that I can post my own projects to the site.
+- As a site user I have a user profile where I can provide more information, so that other users can learn more about me and I can learn more about other users.
+- As a site user I can register for this site using a variety of pre-existing social media, enhancing cross-site posting . . . and so that I don't have to create yet another personal account for a website.
+
+**Epic: Content Management**
+- As a site user I can create, edit and delete my own posts, so that I have control over the content I upload.
+- As a site user I can view other users projects and leave comments and likes associated with them, so that there is an interactive community.
+- As a site user I can view an About page, so that I can learn about the site's features and see information about the creator/owners.
+
+**Epic: Social & Community Features**
+- As a site user I can follow another user, so that I receive notifications when they post content
+- As a site user I can search/filter content from other users by tag and add tags to my own content, so that I can better find specific content I am looking for and increase the visibility of my own content.
+- As a site user I can see a visual notification if I receive a comment/reply so that I can reply and easily participate in community discussions
 
 #
 # Scope 
