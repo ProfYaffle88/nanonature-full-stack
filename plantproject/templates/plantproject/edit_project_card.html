@@ -2,11 +2,10 @@
 {% load static %}
 {% block content %}
 
-{% if user.is_authenticated and user == project.creator %}
-<div class="container">
+<div class="container-fluid card-main card-form dark-text mt-5 mb-5 p-3" style="width: auto;">
    <div class="row">
       <div class="col-8 offset-2 text-center mt-5">
-         <h2>Edit Project Card</h2>
+         <h2 class="card-dark">Edit Project Card</h2>
          <hr>
       </div>
    </div>
@@ -20,5 +19,4 @@
       </div>
    </div>
 </div>
-{% endif %}
 {%endblock%}
