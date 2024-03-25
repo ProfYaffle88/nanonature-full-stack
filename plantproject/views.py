@@ -257,4 +257,4 @@ class EditProjectCardView(UpdateView):
     def get_success_url(self):
         project_pk = self.kwargs['project_pk']
         card_pk = self.kwargs['card_pk']
-        return reverse_lazy('project-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk})
+        return reverse_lazy('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk})
