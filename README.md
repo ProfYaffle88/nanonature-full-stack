@@ -1,110 +1,358 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome James Price,
+<h1 align="center">NanoNature - A Niche Blog</h1>
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+<p align="center">
+<img src="###" width="600" height="100%">
+</p>
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+A full-stack project built using the Django framework with; Python, JavaScript, HTML and CSS. I aim to create a functional blog website for terrarium/bonsai/plant enthusiasts.
 
-## Gitpod Reminders
+# About
+NanoNature is a website where users can register for an account, create projects, update projects with entries, and comment on updates from other users. This allows users to record long-term projects and share them with other hobbyists. The website is primariliy targeted at a community united around a particular hobby (hereafter referred to as <b>'nano-gardening'</b>), but the format could be easily adjusted to any hobby with visibile progress over time. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+# Table of Contents 
+1. [UX](#ux)
+    - [User Stories](#user-stories)
 
-`python3 -m http.server`
+2. [Scope](#scope)
+    - [Features](#features)
+    - [Future Features](#future-features)
+    - [Wireframes](#wireframes)
 
-A blue button should appear to click: _Make Public_,
+3. [Structure](#structure)
 
-Another blue button should appear to click: _Open Browser_.
+4. [Database schema](#database-schema)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+5. [Surface](#surface)
 
-A blue button should appear to click: _Make Public_,
+6. [Technologies Used](#technologies-used)
 
-Another blue button should appear to click: _Open Browser_.
+7. [Testing](#testing)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+8. [Deployment](#deployment)
 
-To log into the Heroku toolbelt CLI:
+9. [Credits](#credits)
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#
+# UX
+Using the core UX principles I first started with Strategy, thinking about the target audience & the features they would benefit from.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+The target audience for NanoNature is:
 
-------
+- Anyone interested in nano-gardening:
+  - All ages, genders, abilities
+  - All experience levels:
+    - Anyone interested in starting out in nano-gardening
+    - Anyone interested in sharing their project successes and failures
 
-## Release History
+These users will be looking for:
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+- A clear and informative website, with intuituve navigation
+- A UI/UX that is minimalistic and emphasises the content and theme.
+- The ability to make a user account in order to post content and interact with the community.
+- The ability to comment on content in order to ask and answer questions.
+- The ability to follow creators and projects of interest
 
-**September 20 2023:** Update Python version to 3.9.17.
+Given the desire to appeal to as broad an audience as possible, UX/UI philosophy will be simple with a focus on content and painless navigation.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## User Stories 
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+**Epic: TITLE**
+- As a site Admin I can ### so that I can ###
+- As a site Admin I can ### so that I can ###
+- As a site Admin I can ### so that I can ###
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+#
+# Scope 
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## Wireframes
+All wireframes were created used [Balsamiq](https://balsamiq.com/)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+<p align="center">
+<img src="doc-assets/wireframes/desktop/lofi-desktop-landing.png" width="80%" height="100%">
+</p>
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+Wireframes for each device are linked here:
+- [Desktop](doc-assets/wireframes/desktop)
+- [Mobile](doc-assets/wireframes/mobile)
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## **Features**
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### **Home Page**
+*Navigation bar:* 
+- The navigation bar appears on every page allowing users to easily navigate through the site
+- Navigation bar has links for 'Home', 'About' and 'Login/Register'
+  - Logged in users will also have a 'Logout' and 'Create Project' button highlighted in the navbar
+  - Logged in users will also have access to future social features: 'Follows', 'Likes'
+- If logged in, username is displayed beneath the navbar.
+- The navbar is responsive, collapsing into a triple-bar menu for medium and small screen size
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+*Animated Header & Footer:*
+- To maintain clean site surface, JavaScript animated in-line SVG tags give a simple but interesting style that doesn't detract from user uploaded images. 
+- Both appear on every page.
+- Footer contains social links.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
 
-------
+*Recently added projects:*
+- Main content display is a plant-like display of recent projects.
+- The content section is fully responsive:
+  - Dynamically drawing new 'branches' to content cards as that are created.
+  - Collapsing to a single column on small screens.
+- Each project title takes the user to the project's details page.
+- Each creator name takes the user to that user's profile page.
+  - Users can also see title, image, a short about section, creator, and date posted/updated.
 
-## FAQ about the uptime script
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-**Why have you added this script?**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### **Project Detail View**
+- The project page shows the project information at the top of the page.
+- The project page displays entries in that project.
+- Each entry card will display an image, short description and date posted/updated.
+- Each entry card takes users to the project entry details page 
 
-**How will this affect me?**
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### **Project Entry Detail View**
+- The project entry page shows the project information at the top of the page.
+- Each entry card will display an image, creator's name, a short description and date posted/updated.
+- Beneath the detail card are 'Next' and 'Prev' buttons to move through the project's entries chronologically.
+- At the bottom of the main content is the 'Comments' section:
+  - Logged in users may leave, update and delete their own comments
+  - Logged in users are empowered to delete comments from other users on their own project entries.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### **Login/Register**
+- The Login / Register button takes users to the login page where they can also find a link to the Register page where they can create an account.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-**So….?**
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
+- At inital registration, a second form is also required to create the user's profile.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+### **Add Project Page**
+- Presents a simple form for users to create their own projects
+  - The user must fill in the title and the about fields in order for the recipe to be published.
+  - The image is optional and a default will be used if no image is chosen.
+- The Create Project button is located at the end of the page, within the navbar for logged in users.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-**Can I opt out?**
+### **Add Project Entry Page**
+- Presents a simple form for users to create an entry in their own projects
+  - The user must fill in the title and the about fields in order for the recipe to be published.
+  - The image is optional and a default will be used if no image is chosen.
+- The Create Project Entry button is located at the bottom of the highlighted project card, in the project view, for logged in users.
+<p align="center">
+<img src="###" width="100%" height="100%">
+</p>
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+### Future Features
+- Search & Tags
+- Follows & Likes
+- Social Account Login
+- Account Management Page
+- Notifications
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+#
+# Structure
 
-**Anything more?**
+All diagrams were created using [LucidChart](https://lucidchart.com/)
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+The website is made from two apps:
+- plantprojects
+  - Handling features and function related to project/card system
+- userprofiles
+  - Handling profile and social faetures to users
 
----
 
-Happy coding!
+# User Flow Diagram
+
+<p align="center">
+<img src="doc-assets/diagrams/user-flow-diagram.png" width="900" height="100%">
+</p>
+
+
+# Database schema
+
+<p align="center">
+<img src="doc-assets/diagrams/Nanonature - Nanonature ERD.png" width="900" height="100%">
+</p>
+
+## Models
+
+### **Project Model**
+<p align="center">
+<img src="doc-assets/diagrams/plantproject-model.png" width="600" height="100%">
+</p>
+
+### **Project Card Model**
+<p align="center">
+<img src="doc-assets/diagrams/plantprojectcard-model.png" width="600" height="100%">
+</p>
+
+### **User Profile Model**
+<p align="center">
+<img src="doc-assets/diagrams/userprofile-model.png" width="600" height="100%">
+</p>
+
+### **Comment Model**
+
+<p align="center">
+<img src="doc-assets/diagrams/comment-model.png" width="600" height="100%">
+</p>
+
+
+# Surface
+
+## Design 
+
+Given the desire to appeal to as broad an audience as possible, UX/UI philosophy will be simple with a focus on content. Navigation should be fast and intuitive. Green is the obvious choice for a natural hobby. The style should be simple and plain for maximum content focus. Plain shapes and colours, minimise points and hard corners, fluid & organic.
+
+## Chosen Color 
+Color palette from [Coolors](https://coolors.co/###)
+<p align="center">
+<img src="doc-assets/wireframes/coolers-palette.PNG" width="60%" height="100%">
+</p>
+
+- **#1A4301** - Header, Footer & Navbar. Also for dark cards in certain views.
+- **#143601** - Dark text for high contrast
+- **#AAD576** - Main Card conrtainer
+- **#538D22** - Focus Card
+- **#73A942** - Subfocus card
+
+<p align="center">
+<img src="doc-assets/wireframes/coolers-honeydew.PNG" width="20%" height="100%">
+</p>
+
+- **#F6FFEB** - An additional colour was created for better light text contrast on certain card styles
+
+## Fonts
+
+Both available through [GoogleFonts](https://fonts.google.com/)
+- **Brand font:** Rubik MoonRocks, sans-serif - Used for Brand and certain impact titles
+- **Site Font:** Comfortaa, sans-serif - main font
+
+# Technologies Used
+
+## Languages 
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+- [Python](https://www.python.org/)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+
+## Frameworks, Libraries & Programs Used
+[GitHub](https://github.com/) - Holds the repository of my project, GitHub connects to GitPod and Heroku.
+
+[GitPod](https://gitpod.io/workspaces) – Connected to GitHub, GitPod hosted the coding space, allowing the project to be built and then committed to the GitHub repository. 
+
+[Heroku](https://www.heroku.com/) - Connected to the GitHub repository, Heroku is a cloud application platform used to deploy this project so the backend language can be utilised/tested. 
+
+[Django](https://www.djangoproject.com/) - The framework used to build  this project
+
+[Gunicorn](https://gunicorn.org/) - Gunicorn - a pure-Python HTTP server for WSGI applications.
+
+[Dj Database URL](https://pypi.org/project/dj-database-url/) - This allows you to utilize the 12factor inspired DATABASE_URL environment variable to configure your Django application.
+
+[Bootstrap](https://getbootstrap.com/) - Base styling
+
+[Cloudinary](https://cloudinary.com/?utm_source=google&utm_medium=cpc&utm_campaign=Rbrand&utm_content=492438439811&utm_term=cloudinary&gclid=Cj0KCQiAt8WOBhDbARIsANQLp96hTerzfFJ_P9lX0tEYEdtM3tSsYB6fhw-x3wQxOO0oc4hXm-A2ZBUaAptIEALw_wcB) - image management
+
+[Pillow](https://pypi.org/project/pillow/) - image mangaement
+
+[Google Fonts](https://fonts.google.com/https://fonts.google.com/) - fonts (via download)
+
+[Font Awesome](https://fontawesome.com/) - icons
+
+[Balsamiq](https://balsamiq.com/) - wireframing
+
+[LucidChart](https://lucidchart.com/) - diagrams
+
+[Am I Responsive](http://ami.responsivedesign.is/) - to check if the site is responsive on different screen sizes.
+
+[PhotoPea](https://photopea.com) - image manipulaiton
+
+[W3C Markup Validator](https://validator.w3.org/#validate_by_input) - was used to validate HTML
+
+[W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - was used to validate CSS
+
+[Beautify](https://www.jpkc.com/tools/beautify/) - was used to correct indentation issues and get rid of too much whitespace - HTML, CSS
+
+[Coolors](https://coolors.co/9df57a-3c444c-fee73b-ff4f98-2daaf3-a9bedb) - to make color palette
+
+[Haikei](https://haikei.app/) - to generate SVG curves
+
+[SVGOMG](https://svgomg.net/) - to optimise SVG curves
+
+[Kute.js](https://thednp.github.io/kute.js/) - to animate the transition between two SVG paths
+
+<hr>
+
+# Testing
+
+
+## User Story Testing
+
+### **Testing Users Stories form (UX) Section**
+
+...
+
+## Bugs and Issues
+- 
+
+- 
+
+- 
+
+- 
+
+- 
+
+# Deployment
+This project was deployed using Github and Heroku.
+
+
+
+# Credits
+
+- [Summernote](https://github.com/summernote/django-summernote) - I learn how to change summernote toolbar
+- [Code Institute](https://codeinstitute.net/ie/) - 'I think therefore I blog' project helped me with recipe details page and pagination
+- [Django documentation](https://docs.djangoproject.com/en/4.0/topics/pagination/) - also helped me with pagination and other problems
+- [Search bar](https://www.teckiy.com/blog/implementation-of-search-bar-using-django-in-any-website-2936659075/) - this site is used to help me build Search bar
+- [Taste](https://www.taste.com.au/) - all recipes were taken from Taste
+
+
+## Media
+- All images are my own.
+
+
+## Acknowledgements
+- Thanks to my mentor 
