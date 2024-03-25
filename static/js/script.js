@@ -72,7 +72,7 @@ function confirmUserDelete() {
 };
 
 function confirmCardDelete() {
-    if (confirm('Are you sure you want to delete ythis project entry? This cannot be undone!')) {
+    if (confirm('Are you sure you want to delete this project entry? This cannot be undone!')) {
         document.getElementById('delete-card-form').submit();
     }
 };
