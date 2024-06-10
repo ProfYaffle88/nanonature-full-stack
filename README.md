@@ -511,24 +511,112 @@ After optimising the SVGs, the next most costly operation is the content paintin
 This project was deployed using Github and Heroku. It can be viewed [here](https://nanonature-f724af5165b5.herokuapp.com/).
 
 ## Github 
-To create a new repository I took the following steps:
+A Github repository was created using the following steps:
 
 - Logged into Github.
-- Clicked over to the ‘repositories’ section.
-- Clicked the green ‘new’ button. This takes you to the create new repository page.
-- Once there under ‘repository template’ I chose the code institute template from the dropdown menu.
-- I input a repository name then clicked the green ‘create repository button’ at the bottom of the page.
-- Once created I opened the new repository and clicked the green ‘Gitpod’ button to create a workspace in Gitpod for editing.
+- Navigated to the 'repositories' section.
+- Clicked the green 'new' button to open the 'create new repository' page.
+- On this page a repository template was chosen using the dropdown menu.
+- The Code Institute template 'gitpod-full-template' was used.
+- The repository was named 'nanonature-full-stack' and created by clicking the green 'create repository' button.
+- Once created, a Gitpod workspace was opened for the new repository by clicking the green '<> Code' button and selecting Gitpod.
 
-## Django and Heroku 
-- To get the Django framework installed and set up I followed the Code institutes [Django Blog cheatsheet](https://codeinstitute.s3.amazonaws.com/fst/Django%20Blog%20Cheat%20Sheet%20v1.pdf)
+## Django
+This project uses the Django fullstack framework. Django can be installed by following these steps:
+
+- In the development environment (Gitpod in my case), type the following command into the terminal:
+```
+pip3 install django
+```
+- To name and open a new project, type the following command into the terminal:
+```
+django-admin startproject *Your project name here*
+```
+- I used the project name "nanonature". This command will add a django project folder with the given name to the file explorer.
+- Create a gitignore file by typing the following command into the terminal:
+```
+touch .gitignore
+```
+- Inside the gitignore file, add env.py and any files you wish to be ignored when pushing to git (such as the local db used in development):
+```
+core.Microsoft*
+core.mongo*
+core.python*
+env.py
+__pycache__/
+*.py[cod]
+node_modules/
+.github/
+cloudinary_python.txt
+db.sqlite3
+```
+- To check that everything so far is working as intended, run the following command in the terminal:
+```
+python3 manage.py runserver
+```
+- This will expose port 8000 and if all is well you should see Django's success page displayed.
+- Once that is done, create the inital migrations by running the following command in the terminal:
+```
+python3 manage.py makemigrations
+```
+- Then apply these using:
+```
+python3 manage.py migrate
+```
+- Create a superuser to allow access to the admin panel using the command ```python3 manage.py createsuperuser```. You will be asked to create a username and password (and optionally an email address).
+- To allow Heroku deployment, create a procfile using ```touch Procfile``` and add ```web: gunicorn *Your Project Name Here*.wsgi``` to the Procfile
+- After all of the above steps, push the changes to Github by running the following commands:
+```
+git add .
+git commit -m "inital commit"
+git push
+```
+
+## Allauth
+The Django framework contains a package called 'Allauth' which handles registration and sign-in processes. The Allauth documentation contains a [Quickstart](https://docs.allauth.org/en/latest/installation/quickstart.html) with a step-by-step guide. The steps are abbreviated below:
+- Run ```pip install django-allauth```
+- Inside the settings.py file, add Allauth to INSTALLED_APPS, MIDDLEWARE and SOCIALACCOUNT_PROVIDERS (if using). See [Quickstart documentation](https://docs.allauth.org/en/latest/installation/quickstart.html) for full details
+- Inside the urls.py of the project, under urlpatterns, add ```path('accounts/', include('allauth.urls')),```
+- Create and apply migrations:
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+## Other Packages
+Several other packages (such as whitenoise, bootstrap, crispy-forms) were used in the creation of this project. To install all the packages used here in your own project, add the requirements.txt from this repo to your project and run ```pip3 install -r requirements.txt```. This will install all packages, including Django and Allauth, to your project.
+
+## Heroku
+Heroku was used to deploy the project. Follow these steps to deploy to Heroku:
+- Sign in to Heroku (accounts are free, you can create an account [here](https://signup.heroku.com/))
+- Navigate to the dashboard and click the 'New' button, then select 'Create New App'
+- Name the app (nanonature in this case), select a nearby region (Europe in my case), and click 'Create App'
+- Navigate to the Settings tab on the newly created app and click 'reveal config vars'
+- Two external services were used to create a functional production database:
+- - Cloudinary for media storage
+- - ElephantSQL for the production database itself (WARNING! ElephantSQL has announced it will discontinue service on 27th January 2025. You can read their End of Life Announcement [here](https://www.elephantsql.com/).)
+- For Cloudinary, create an account [here](https://cloudinary.com/) or login if you have one already.
+- Navigate to the Cloudinary Dashboard and copy the 'API Environment Variable' and add it to the Heroku config vars in the following format: Key = ```CLOUDINARY_URL```, Value = ```cloudinary://*your unique cloudinary API environment variable from your dashboard*```
+- For ElephantSQL, create an account [here](https://www.elephantsql.com/) or login if you already have one.
+- From the ElephantSQL Dashboard, click the green '+ Create New Instance' button.
+- Select the "Tiny Turtle" plan (it's free), you can leave the tags blank.
+- Choose the region and select the nearest (or best performing) data centre to your location.
+- Click the 'Review' button, then check the details before clicking the 'Create Instance' button.
+- Navigate to the newly created instance and locate the details containing the database URL.
+- Add the database URL to the Heroku config vars in the following format: Key = ```DB_URL```, Value = ```postgres://*your unique database URL from your ElephantSQL instance dashboard*```
+- On Heroku, navigate to the 'Deploy' tab and select the Github deployment method.
+- Input the URL of the Github repo and beneath that choose the branch to deploy from.
+- Click 'Deploy Branch' and wait for the app to build. Once it has built, click 'View' to see the deployed app.
+- Ensure that the Django Secret Key is also added to the Heroku config vars and obfuscate the key in your settings.py file. This is most easily achieved by moving it to the env.py file and ensuring that env.py is on the gitignore list.
+- During development, it is advisable to manually deploy at the end of every day and after significant changes.
+- In settings.py, ```DEBUG = 'DEBUG' in os.environ```, meaning the debug value is set within the env.py file. This also means that ```DEBUG = False``` in the Heroku deployment. DEBUG can be turned on by adding it to the Heroku config vars but ensure this is removed from the finished project.
 
 
 # Credits
 
 - [Code Institute](https://codeinstitute.net/ie/) - 'I think therefore I blog' project helped me with recipe details page and pagination
 - [Django documentation](https://docs.djangoproject.com/en/4.0/topics/pagination/) - also helped me with pagination and other problems
-- Dozens Youtibe tutorials, particularly:
+- Dozens Youtube tutorials, particularly:
   - [Build a Curvaceous Homepage // Wavy Background Tutorial with SVG & CSS by Fireship](https://www.youtube.com/watch?v=lPJVi797Uy0)
   - [How to Create a Vertical Timeline - HTML & CSS Tutorial by dcode](https://www.youtube.com/watch?v=AIDiMA_C3sg)
   - CodeBootCamp, NetNinja and many more.
@@ -540,7 +628,7 @@ To create a new repository I took the following steps:
 - All images are my own.
 
 ## Acknowledgements
-- Thanks to my mentor Ronan
+- Thanks to my Mentor Ronan
 - Thanks to my Coach and moral support Martin
 - Thank you of course to Kevin for being Kevin
 - Thank you to Iris and all the CI community, I have thoroughly enjoyed myself!
