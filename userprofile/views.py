@@ -5,11 +5,13 @@ from django.contrib.auth.views import LoginView, FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .forms import SignupForm, UserProfileForm
 from .models import UserProfile
 from plantproject.models import PlantProject
 
-class UserProfileDetailView(DetailView):
+class UserProfileDetailView(LoginRequiredMixin, DetailView):
     """
     View for displaying user profile details.
     """
@@ -33,7 +35,7 @@ class UserProfileDetailView(DetailView):
         return context
 
 
-# class CustomSignupView(FormView):
+# class CustomSignupView(LoginRequiredMixin, FormView):
 #     """
 #     View for displaying custom signup form that updates User
 #     """
@@ -49,7 +51,7 @@ class UserProfileDetailView(DetailView):
 #         return HttpResponseRedirect(self.success_url)
 
 
-class CustomProfileView(FormView):
+class CustomProfileView(LoginRequiredMixin, FormView):
     """
     View for displaying custom signup form that updates UserProfile after User creation
     """
@@ -88,5 +90,4 @@ def delete_user(request):
         return redirect('/')
     else:
         return redirect('user-profile', pk=user.pk)
-
     return render(request, 'delete_user.html')
