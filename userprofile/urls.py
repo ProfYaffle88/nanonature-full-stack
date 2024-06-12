@@ -8,7 +8,7 @@ urlpatterns = [
     # path('signup/', CustomSignupView.as_view(), name='custom_signup'),
     path('signup/create-profile/', CustomProfileView.as_view(), name='custom_profile'),
     path('profile/<int:pk>/', UserProfileDetailView.as_view(), name='user-profile'),
-    path('edit-profile/', views.edit_profile, name='edit-profile'),
+    path('profile/<int:pk>/edit-profile/', views.edit_profile, name='edit-profile'),
     path('delete-user/', views.delete_user, name='delete-user'),
     path('plantproject/', include('plantproject.urls')),
 ]

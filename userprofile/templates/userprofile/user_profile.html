@@ -19,7 +19,7 @@
                         {% endif %}
                         <p class="card-text">{{ object.bio }}</p>
                         {% if user_is_owner %}
-                        <form id="edit-profile" method="post" action="{% url 'userprofile:edit-profile' %}">
+                        <form id="edit-profile" method="post" action="{% url 'userprofile:edit-profile' profile.pk %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-primary">Edit Profile</button>
                         <form id="delete-user" method="post" action="{% url 'userprofile:delete-user' %}">

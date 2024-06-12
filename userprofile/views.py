@@ -66,7 +66,7 @@ class CustomProfileView(FormView):
         return redirect(self.get_success_url())
 
 
-def edit_profile(request):
+def edit_profile(request, pk):
     user = request.user
     if request.method == 'POST':
         user_form = SignupForm(request.POST, instance=user)
