@@ -66,7 +66,6 @@ class CustomProfileView(FormView):
         return redirect(self.get_success_url())
 
 
-@login_required
 def edit_profile(request):
     user = request.user
     if request.method == 'POST':
@@ -79,10 +78,9 @@ def edit_profile(request):
     else:
         user_form = SignupForm(instance=user)
         profile_form = UserProfileForm(instance=user.userprofile)
-    return render(request, 'edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'userprofile/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-@login_required
 def delete_user(request):
     if request.method == 'POST':
         request.user.delete()
