@@ -88,7 +88,6 @@ class ProjectCardView(DetailView):
         context['comment_form'] = self.comment_form
         return context
 
-    @login_required
     def post(self, request, *args, **kwargs):
         # Handle POST request for adding a comment
         project_pk = self.kwargs.get('project_pk')
@@ -118,7 +117,7 @@ def About(request):
     return render(request, 'plantproject/about.html')
 
 
-class ProjectCreateView(LoginRequiredMixin, CreateView):
+class ProjectCreateView(CreateView):
     model = PlantProject
     fields = ['title', 'image', 'about']
     template_name = 'plantproject/project_create.html'
@@ -132,7 +131,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
         return reverse('project-view', kwargs={'pk': self.object.pk})
 
 
-class ProjectCardCreateView(LoginRequiredMixin, CreateView):
+class ProjectCardCreateView(CreateView):
     model = PlantProjectCard
     fields = ['title', 'image', 'entry_body',]
     template_name = 'plantproject/project_card_create.html'
@@ -155,7 +154,6 @@ class ProjectCardCreateView(LoginRequiredMixin, CreateView):
         project_pk = self.object.project.pk
         return reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': self.object.pk})
 
-@login_required
 def comment_edit(request, project_pk, card_pk, comment_pk):
     """
     Display an individual comment for edit.
@@ -184,7 +182,6 @@ def comment_edit(request, project_pk, card_pk, comment_pk):
 
     return HttpResponseRedirect(reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk}))
 
-@login_required
 def comment_delete(request, project_pk, card_pk, comment_pk):
     """
     Delete an individual comment.
@@ -208,7 +205,6 @@ def comment_delete(request, project_pk, card_pk, comment_pk):
     return HttpResponseRedirect(reverse('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk}))
 
 
-@login_required
 def delete_project(request, project_pk):
     project = get_object_or_404(PlantProject, pk=project_pk)
     
@@ -222,7 +218,7 @@ def delete_project(request, project_pk):
         return render(request, 'error_page.html', {'message': 'You are not authorized to delete this project.'})
 
 
-class EditProjectView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditProjectView(UpdateView):
     """
     Edit an existing project
     """
@@ -236,13 +232,8 @@ class EditProjectView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('project-view', kwargs={'pk': self.object.pk})
-    
-    def test_func(self):
-        project = self.get_object()
-        return self.request.user == project.creator
 
 
-@login_required
 def delete_project_card(request, project_pk, card_pk):
     project = get_object_or_404(PlantProject, pk=project_pk)
     card = get_object_or_404(PlantProjectCard, pk=card_pk)
@@ -257,7 +248,7 @@ def delete_project_card(request, project_pk, card_pk):
         return render(request, 'error_page.html', {'message': 'You are not authorized to delete this!'})
 
 
-class EditProjectCardView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditProjectCardView(UpdateView):
     """
     Edit an exisiting entry in a project
     """
@@ -273,7 +264,3 @@ class EditProjectCardView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         project_pk = self.kwargs['project_pk']
         card_pk = self.kwargs['card_pk']
         return reverse_lazy('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk})
-    
-    def test_func(self):
-        card = self.get_object()
-        return self.request.user == card.project.creator

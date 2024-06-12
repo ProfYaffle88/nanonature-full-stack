@@ -11,7 +11,7 @@ from .forms import SignupForm, UserProfileForm
 from .models import UserProfile
 from plantproject.models import PlantProject
 
-class UserProfileDetailView(LoginRequiredMixin, DetailView):
+class UserProfileDetailView(DetailView):
     """
     View for displaying user profile details.
     """
@@ -35,7 +35,7 @@ class UserProfileDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-# class CustomSignupView(LoginRequiredMixin, FormView):
+# class CustomSignupView(FormView):
 #     """
 #     View for displaying custom signup form that updates User
 #     """
@@ -51,7 +51,7 @@ class UserProfileDetailView(LoginRequiredMixin, DetailView):
 #         return HttpResponseRedirect(self.success_url)
 
 
-class CustomProfileView(LoginRequiredMixin, FormView):
+class CustomProfileView(FormView):
     """
     View for displaying custom signup form that updates UserProfile after User creation
     """
