@@ -11,7 +11,7 @@ from .forms import SignupForm, UserProfileForm
 from .models import UserProfile
 from plantproject.models import PlantProject
 
-class UserProfileDetailView(LoginRequiredMixin, DetailView):
+class UserProfileDetailView(DetailView):
     """
     View for displaying user profile details.
     """
