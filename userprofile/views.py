@@ -68,17 +68,19 @@ class CustomProfileView(FormView):
 
 def edit_profile(request, pk):
     user = request.user
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+
     if request.method == 'POST':
-        user_form = SignupForm(request.POST, instance=user)
         profile_form = UserProfileForm(request.POST, request.FILES, instance=user.userprofile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
+        if profile_form.is_valid():
             profile_form.save()
-            return redirect('user-profile', pk=user.pk)
+            return redirect('userprofile:user-profile', pk=user.pk)
+        else:
+            print("Form is invalid")
+            print(profile_form.errors)
     else:
-        user_form = SignupForm(instance=user)
         profile_form = UserProfileForm(instance=user.userprofile)
-    return render(request, 'userprofile/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'userprofile/edit_profile.html', {'profile_form': profile_form})
 
 
 def delete_user(request):
