@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.urls import reverse_lazy
@@ -233,6 +233,12 @@ class EditProjectView(LoginRequiredMixin, UpdateView):
     pk_url_kwarg = 'project_pk'
     template_name = 'plantproject/edit_project.html'
     
+    def dispatch(self, request, *args, **kwargs):
+        project = self.get_object()
+        if request.user != project.creator and not request.user.is_superuser:
+            return HttpResponseForbidden("You are not allowed to edit this project!")
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         return super().form_valid(form)
 
@@ -264,6 +270,12 @@ class EditProjectCardView(LoginRequiredMixin, UpdateView):
     pk_url_kwarg = 'card_pk'
     template_name = 'plantproject/edit_project_card.html'
     
+    def dispatch(self, request, *args, **kwargs):
+        project_card = self.get_object()
+        if request.user != project_card.project.creator and not request.user.is_superuser:
+            return HttpResponseForbidden("You are not allowed to edit this project card!")
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         return super().form_valid(form)
 
