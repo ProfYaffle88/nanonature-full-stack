@@ -11,7 +11,7 @@ from .forms import SignupForm, UserProfileForm
 from .models import UserProfile
 from plantproject.models import PlantProject
 
-class UserProfileDetailView(DetailView):
+class UserProfileDetailView(LoginRequiredMixin, DetailView):
     """
     View for displaying user profile details.
     """
@@ -35,23 +35,7 @@ class UserProfileDetailView(DetailView):
         return context
 
 
-# class CustomSignupView(FormView):
-#     """
-#     View for displaying custom signup form that updates User
-#     """
-#     template_name = 'signup.html'
-#     form_class = SignupForm
-#     success_url = 'userprofile:custom_profile'
-    
-#     print("Success URL:", success_url)
-    
-#     def form_valid(self, form):        
-#         user = form.save()
-#         login(self.request, user)
-#         return HttpResponseRedirect(self.success_url)
-
-
-class CustomProfileView(FormView):
+class CustomProfileView(LoginRequiredMixin, FormView):
     """
     View for displaying custom signup form that updates UserProfile after User creation
     """
@@ -66,6 +50,7 @@ class CustomProfileView(FormView):
         return redirect(self.get_success_url())
 
 
+@login_required
 def edit_profile(request, pk):
     user = request.user
     user_profile = get_object_or_404(UserProfile, user=request.user)
@@ -83,6 +68,7 @@ def edit_profile(request, pk):
     return render(request, 'userprofile/edit_profile.html', {'profile_form': profile_form})
 
 
+@login_required
 def delete_user(request):
     if request.method == 'POST':
         request.user.delete()
