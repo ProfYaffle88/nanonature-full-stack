@@ -55,6 +55,9 @@ def edit_profile(request, pk):
     user = request.user
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
+    if request.user.pk != pk and not request.user.is_superuser:
+        return render(request, '403.html', status=403)
+
     if request.method == 'POST':
         profile_form = UserProfileForm(request.POST, request.FILES, instance=user.userprofile)
         if profile_form.is_valid():
@@ -71,9 +74,11 @@ def edit_profile(request, pk):
 @login_required
 def delete_user(request):
     if request.method == 'POST':
-        request.user.delete()
-        logout(request)
-        return redirect('/')
+        if request.user == request.user or request.user.is_superuser:
+            request.user.delete()
+            logout(request)
+            return redirect('/')
+        else:
+            return render(request, '403.html', status=403)
     else:
-        return redirect('user-profile', pk=user.pk)
-    return render(request, 'delete_user.html')
+        return redirect('userprofile:user-profile', pk=request.user.pk)

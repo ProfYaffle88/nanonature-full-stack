@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import HomeView, ProjectView, ProjectCardView, ProjectCreateView, ProjectCardCreateView, delete_project, EditProjectView, delete_project_card, EditProjectCardView
+from .views import HomeView, ProjectView, ProjectCardView, ProjectCreateView, ProjectCardCreateView, delete_project, EditProjectView, delete_project_card, EditProjectCardView, custom_page_not_found_view
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -16,3 +16,5 @@ urlpatterns = [
     path('project/<int:project_pk>/card/<int:card_pk>/edit_comment/<int:comment_pk>', views.comment_edit, name='comment_edit'),
     path('project/<int:project_pk>/card/<int:card_pk>/delete_comment/<int:comment_pk>', views.comment_delete, name='comment_delete'),
 ]
+
+handler404 = 'plantproject.views.custom_page_not_found_view'

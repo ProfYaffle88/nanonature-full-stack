@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 mb-5 card-subfocus">
+    <h1>404 Not Found</h1>
+    <p>Sorry, we can't find what you're looking for!</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+</div>
+{% endblock %}

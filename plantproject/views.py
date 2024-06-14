@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.urls import reverse_lazy
@@ -170,6 +170,10 @@ def comment_edit(request, project_pk, card_pk, comment_pk):
     ``comment_form``
         An instance of :form:`plantproject.CommentForm`
     """
+
+    if comment.author != request.user and not request.user.is_superuser:
+        return render(request, '403.html', status=403)
+
     if request.method == "POST":
         card = get_object_or_404(PlantProjectCard, pk=card_pk)
         comment = get_object_or_404(Comment, pk=comment_pk)
@@ -214,6 +218,9 @@ def comment_delete(request, project_pk, card_pk, comment_pk):
 def delete_project(request, project_pk):
     project = get_object_or_404(PlantProject, pk=project_pk)
     
+    if request.user != project.creator and not request.user.is_superuser:
+        return render(request, '403.html', status=403)
+
     if request.user == project.creator:
         if request.method == 'POST':
             project.delete()
@@ -236,7 +243,7 @@ class EditProjectView(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         project = self.get_object()
         if request.user != project.creator and not request.user.is_superuser:
-            return HttpResponseForbidden("You are not allowed to edit this project!")
+            return render(request, '403.html', status=403)
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -250,6 +257,9 @@ class EditProjectView(LoginRequiredMixin, UpdateView):
 def delete_project_card(request, project_pk, card_pk):
     project = get_object_or_404(PlantProject, pk=project_pk)
     card = get_object_or_404(PlantProjectCard, pk=card_pk)
+
+    if request.user != project.creator and not request.user.is_superuser:
+        return render(request, '403.html', status=403)
 
     if request.user == project.creator:
         if request.method == 'POST':
@@ -273,7 +283,7 @@ class EditProjectCardView(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         project_card = self.get_object()
         if request.user != project_card.project.creator and not request.user.is_superuser:
-            return HttpResponseForbidden("You are not allowed to edit this project card!")
+            return render(request, '403.html', status=403)
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -283,3 +293,7 @@ class EditProjectCardView(LoginRequiredMixin, UpdateView):
         project_pk = self.kwargs['project_pk']
         card_pk = self.kwargs['card_pk']
         return reverse_lazy('project-card-view', kwargs={'project_pk': project_pk, 'card_pk': card_pk})
+    
+    
+def custom_page_not_found_view(request, exception):
+    return render(request, '404.html', status=404)
