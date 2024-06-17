@@ -2,7 +2,7 @@
 <h1 align="center">NanoNature - A Niche Blog</h1>
 
 <p align="center">
-<img src="###" width="600" height="100%">
+<img src="doc-assets/wireframes/flavour.PNG" width="600" height="100%">
 </p>
 
 [AmIResponsive](www.amiresponsive.com) is not happy with my animated content - Work Around In Progress
@@ -100,7 +100,7 @@ Wireframes for each device are linked here:
 - The navbar is responsive, collapsing into a triple-bar menu for medium and small screen size
 
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/wireframes/navbar.PNG" width="100%" height="100%">
 </p>
 
 
@@ -110,11 +110,7 @@ Wireframes for each device are linked here:
 - Footer contains social links.
 
 <p align="center">
-<img src="###" width="100%" height="100%">
-</p>
-
-<p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/wireframes/footer.PNG" width="100%" height="100%">
 </p>
 
 
@@ -128,7 +124,7 @@ Wireframes for each device are linked here:
   - Users can also see title, image, a short about section, creator, and date posted/updated.
 
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/hand-drawn-branch.PNG" width="100%" height="100%">
 </p>
 
 
@@ -139,7 +135,7 @@ Wireframes for each device are linked here:
 - Each entry card takes users to the project entry details page 
 
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/project-crud.PNG" width="100%" height="100%">
 </p>
 
 ### **Project Entry Detail View**
@@ -151,21 +147,21 @@ Wireframes for each device are linked here:
   - Logged in users are empowered to delete comments from other users on their own project entries.
 
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/prev-next-slideshow.PNG" width="100%" height="100%">
 </p>
 
 ### **Login/Register**
 - The Login / Register button takes users to the login page where they can also find a link to the Register page where they can create an account.
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/register1.PNG" width="100%" height="100%">
 </p>
 
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/register2.PNG" width="100%" height="100%">
 </p>
 - At inital registration, a second form is also required to create the user's profile.
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/signout.PNG" width="100%" height="100%">
 </p>
 
 ### **Add Project Page**
@@ -174,7 +170,7 @@ Wireframes for each device are linked here:
   - The image is optional and a default will be used if no image is chosen.
 - The Create Project button is located at the end of the page, within the navbar for logged in users.
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/project-form.PNG" width="100%" height="100%">
 </p>
 
 ### **Add Project Entry Page**
@@ -183,7 +179,7 @@ Wireframes for each device are linked here:
   - The image is optional and a default will be used if no image is chosen.
 - The Create Project Entry button is located at the bottom of the highlighted project card, in the project view, for logged in users.
 <p align="center">
-<img src="###" width="100%" height="100%">
+<img src="doc-assets/screenshots/project-card-form.PNG" width="100%" height="100%">
 </p>
 
 ### Future Features
@@ -250,7 +246,7 @@ The website is made from two apps:
 Given the desire to appeal to as broad an audience as possible, UX/UI philosophy will be simple with a focus on content. Navigation should be fast and intuitive. Green is the obvious choice for a natural hobby. The style should be simple and plain for maximum content focus. Plain shapes and colours, minimise points and hard corners, fluid & organic.
 
 ## Chosen Color 
-Color palette from [Coolors](https://coolors.co/###)
+Color palette from [Coolors](https://coolors.co/)
 <p align="center">
 <img src="doc-assets/wireframes/coolers-palette.PNG" width="60%" height="100%">
 </p>
